@@ -1,0 +1,29 @@
+main.main .wp-block-kebo-code.kebo-code {
+  @apply mb-0;
+
+  & * {
+    @apply font-mono;
+  }
+}
+
+main.main .wp-block-blockgallery-stacked.alignwide {
+  @apply px-0 mx-0;
+
+  .blockgallery {
+    @apply px-0 mx-0;
+  }
+
+  @screen md {
+    @apply px-2 mx-auto;
+
+    .blockgallery {
+      @apply px-0 mx-auto;
+    }
+  }
+}
+
+main.main {
+  iframe.airtable-embed.airtable-dynamic-height {
+    @apply block max-w-lg w-full mx-auto;
+  }
+}

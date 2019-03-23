@@ -1,0 +1,7 @@
+staging.tinypixel.dev ansible_host=142.93.21.156
+
+[staging]
+staging.tinypixel.dev
+
+[web]
+staging.tinypixel.dev

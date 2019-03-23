@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "Simplon Norm";
+  src:
+    url("./../fonts/SimplonNorm-Italic.woff2") format("woff2"),
+    url("./../fonts/SimplonNorm-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Simplon Norm";
+  src:
+    url("./../fonts/SimplonNorm.woff2") format("woff2"),
+    url("./../fonts/SimplonNorm.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Simplon Norm";
+  src:
+    url("./../fonts/SimplonNorm-Medium.woff2") format("woff2"),
+    url("./../fonts/SimplonNorm-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Simplon Norm";
+  src:
+    url("./../fonts/SimplonNorm-MediumItalic.woff2") format("woff2"),
+    url("./../fonts/SimplonNorm-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Simplon Norm";
+  src:
+    url("./../fonts/SimplonNorm-Bold.woff2") format("woff2"),
+    url("./../fonts/SimplonNorm-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Simplon Mono";
+  src:
+    url("./../fonts/SimplonMono-Light.woff2") format("woff2"),
+    url("./../fonts/SimplonMono-Light.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Simplon Mono";
+  src:
+    url("./../fonts/SimplonMono-Medium.woff2") format("woff2"),
+    url("./../fonts/SimplonMono-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Simplon Mono";
+  src:
+    url("./../fonts/SimplonMono-Bold.woff2") format("woff2"),
+    url("./../fonts/SimplonMono-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}

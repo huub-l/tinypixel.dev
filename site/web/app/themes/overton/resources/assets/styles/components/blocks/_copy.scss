@@ -1,0 +1,144 @@
+main.main {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  table {
+    @apply font-mono ml-auto mr-auto py-0 px-2;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans leading-tight;
+  }
+
+  h1 {
+    @apply text-4xl pt-12 pb-12;
+  }
+
+  h2 {
+    @apply text-3xl pt-12 pb-8 uppercase;
+  }
+
+  h3 {
+    @apply text-2xl py-4;
+  }
+
+  h4,
+  h5,
+  h6 {
+    @apply text-xl my-0 py-2 uppercase;
+  }
+
+  pre,
+  .wp-block-code,
+  .wp-block-verse,
+  code,
+  ul,
+  ol {
+    @apply font-mono overflow-hidden;
+  }
+
+  p,
+  p *,
+  pre,
+  pre *,
+  span,
+  span *,
+  table *,
+  ul *,
+  li * {
+    @apply text-lg font-mono;
+  }
+
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6,
+  > p,
+  > span,
+  > a,
+  > table {
+    @apply max-w-lg w-full ml-auto mr-auto px-2;
+  }
+
+  > p {
+    @apply py-2;
+  }
+
+  h1 + p,
+  h2 + p,
+  h3 + p,
+  h4 + p,
+  h5 + p,
+  h6 + p,
+  h1 + *:not([class*="wp-block"]) {
+    @apply pt-0;
+  }
+
+  > ol {
+    @apply my-0 pl-12 pr-0 ml-auto;
+  }
+
+  > ol ol {
+    @apply my-0 pr-0 ml-auto pl-8;
+  }
+
+  > ul:not([class*="columns-"]):not(.is-grid) li,
+  > ul:not([class*="columns-"]):not(.is-grid) ul li {
+    display: list-item;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  > ul:not([class*="columns-"]):not(.is-grid) {
+    li::before,
+    li ul li::before {
+      content: "👉";
+    }
+
+    & ul {
+      @apply my-0 pl-0 pr-0 ml-auto;
+    }
+  }
+
+  /** buttons */
+  a:not(.wp-block-button__link) {
+    @apply text-primary no-underline border-b border-transparent;
+
+    transition: 0.2s ease;
+
+    &:hover {
+      @apply border-primary;
+    }
+  }
+
+  pre {
+    @apply w-full overflow-x-scroll mt-4 mb-4;
+  }
+
+  code {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+  }
+
+  .wp-block-code,
+  :not(pre) code {
+    background-color: #22292ff1;
+    color: white;
+    border-radius: 3px;
+  }
+}
