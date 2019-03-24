@@ -1,0 +1,791 @@
+/*------------------------------------------------------------------
+[Table of contents]
+1. General CSS
+     1.1 Columns CSS
+2. Image Slider / Text Slider CSS
+3. Button CSS
+4. Skills CSS
+5. Team/Member CSS
+6. Image PopUp (PreetyPhoto) CSS
+7. Portfolio Page CSS
+8. Single Portfolio
+9. Responsive CSS
+-------------------------------------------------------------------*/
+
+
+/* ===================================
+    1. General CSS
+====================================== */
+
+.info-code-title {
+    font-size: 10px;
+    color: #000;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    line-height: 15px;    
+}
+
+.info-code-content, 
+.info-code-content a {
+    color: #939393;
+}
+
+.medium-text {
+    font-size: 22px;
+    line-height: 40px;
+    color: #939393;
+}
+
+.service-item  {
+    margin-bottom: 60px;
+}
+
+h3.service-title  {
+    font-size: 22px;
+    line-height: 28px;
+}
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+    -webkit-transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -ms-transition-duration: 0s;
+    -o-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+
+/* ===================================
+    1.1 Columns CSS
+====================================== */
+
+.one,  
+.one_half,  
+.one_third,  
+.two_third,  
+.three_fourth, 
+.one_fourth {
+    margin-right: 8%;
+    float: left;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.last {
+    margin-right: 0 !important;
+    clear: right;
+}
+
+.one {   
+    float: none;
+    display: block;
+    clear: both;
+    margin-right: 0;
+}
+
+.one_half {
+    width: 46%;
+}
+
+.one_third {
+    width: 28%;
+}
+
+.two_third {
+    width: 64%;
+}
+
+.one_fourth {
+    width: 19%;
+}
+
+.three_fourth {
+    width: 73%;
+}
+
+.animate {
+    opacity: 0;
+    transition: .3s ease-in;
+    -ms-transform: translate(0px,70px); 
+    -webkit-transform: translate(0px,70px);
+    transform: translate(0px,70px);
+}
+
+.animate.show-it {
+    opacity: 1;
+    -ms-transform: translate(0px,0px); 
+    -webkit-transform: translate(0px,0px);
+    transform: translate(0px,0px);
+}
+
+.wait-01s {
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+}
+
+.wait-02s {
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.wait-03s {
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.wait-04s {
+    -webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+.wait-05s {
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.wait-06s {
+    -webkit-transition-delay: 0.6s;
+    transition-delay: 0.6s;
+}
+
+.wait-07s {
+    -webkit-transition-delay: 0.7s;
+    transition-delay: 0.7s;
+}
+
+.wait-08s {
+    -webkit-transition-delay: 0.8s;
+    transition-delay: 0.8s;
+}
+
+.wait-09s {
+    -webkit-transition-delay: 0.9s;
+    transition-delay: 0.9s;
+}
+
+.wait-10s {
+    -webkit-transition-delay: 1s;
+    transition-delay: 1s;
+}
+
+.wait-11s {
+    -webkit-transition-delay: 1.1s;
+    transition-delay: 1.1s;
+}
+
+.wait-12s {
+    -webkit-transition-delay: 1.2s;
+    transition-delay: 1.2s;
+}
+
+.wait-13s {
+    -webkit-transition-delay: 1.3s;
+    transition-delay: 1.3s;
+}
+
+.wait-14s {
+    -webkit-transition-delay: 1.4s;
+    transition-delay: 1.4s;
+}
+
+.wait-15s {
+    -webkit-transition-delay: 1.5s;
+    transition-delay: 1.5s;
+}
+
+.margin-0 {
+    margin: 0 !important;
+}
+
+.one_half.margin-0 {
+    width: 50%;
+}
+
+.one_third.margin-0 {
+    width: calc(100% / 3);
+}
+
+.two_third.margin-0 {
+    width: calc(100% / 3 * 2);
+}
+
+.one_fourth.margin-0 {
+    width: 25%;
+}
+
+.three_fourth.margin-0 {
+    width: 75%;
+}
+
+/* ===================================
+    2. Image Slider / Text Slider CSS
+====================================== */
+
+.image-slider-wrapper {
+    margin-bottom: 45px;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;    
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width: 100% !important;
+}
+
+.swiper-scrollbar-drag {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    left: 0;
+    top: -10px;
+    height: 18px;
+    border: 2px solid black;
+    border-radius: 90%;
+    width: 18px !important;
+}
+
+.swiper-scrollbar {
+    position: relative;
+    left: 50%;
+    bottom: 0;
+    z-index: 50;
+    height: 2px;
+    width: 300px;
+    right: auto;
+    margin-left: -150px;
+    background-color: black;
+    margin-bottom: 50px;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.swiper-scrollbar.dots {
+    display: none;
+}
+
+.swiper-pagination {
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.swiper-pagination.dots {
+    display: block;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    vertical-align: middle;
+    margin: 0 5px;
+    border: 6px solid white;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    width: 18px;
+    height: 18px;
+    border: 2px solid black;    
+    background-color: transparent;
+}
+
+.text-slider-wrapper  {
+    margin-bottom: 50px;
+}
+
+.text-slider .slider-text-holder {
+    width: 600px;
+    max-width: 95%;
+    font-size: 22px;
+    line-height: 40px;
+    color: #939393;
+}
+
+/* ===================================
+    3. Button CSS
+====================================== */
+
+a.button {
+    color: #fff !important;
+    background-color: #000;
+    padding: 17px 17px 17px 28px;
+    display: inline-block;
+    font-size: 11px;
+    min-width: 165px;
+    letter-spacing: 8px;
+    transition: opacity .3s ease;
+    text-align: center;
+}
+
+a.button:hover {
+    opacity: 0.8; 
+}
+
+
+/* ===================================
+    4. Skills CSS
+====================================== */
+
+
+.progress_bar  {
+    margin-bottom: 13px;
+}
+
+.progress_bar_field_holder {
+    height: 10px;
+    display: inline-block; 
+    position: relative;
+    width: 300px;
+    vertical-align: middle;    
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #eeeeee;
+}
+
+.progress_bar_title {
+    display: inline-block;
+    width: 170px;
+    margin-right: 23px;
+}
+
+.progress_bar_field_perecent {
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+}
+
+
+
+/* ===================================
+    5. Team/Member CSS
+====================================== */
+
+
+.team-holder .member {
+    position: relative;    
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.team-holder .member img {
+    display: block;
+    width: 100%;
+    height: auto;    
+}
+
+.team-holder .member.one_half {
+    width: 50%;
+}
+
+.team-holder .member.one_third {
+    width: calc(100% / 3);
+}
+
+.team-holder .member.one_fourth {
+    width: calc(100% / 4);   
+}
+
+.team-holder .member-info {
+    opacity: 0;
+    transition: .4s ease;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background-color: #000000;
+    color: #fff;
+}
+
+.team-holder .member-info:hover {
+    opacity: 1;
+}
+
+.team-holder .member-name {
+    margin-top: 35%;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.team-holder .member-name a {
+    color: #fff;    
+}
+
+.team-holder .member-social-holder {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 0 40px;
+}
+
+.team-holder .social {
+    display: inline-block;
+    font-size: 25px;
+    margin: 0 5px;
+}
+
+.team-holder .social a {
+    color: #fff;
+}
+
+.team-holder .social a:hover {
+    color: #dfdad4;
+}
+
+
+/* ===================================
+    6. Image PopUp (PreetyPhoto) CSS
+====================================== */
+
+div.pp_default .pp_loaderIcon {
+    display: none !important;
+}
+
+div.pp_default a.pp_arrow_previous {
+    background-image: url(../images/nav_left.png);
+    background-size: 20px 20px;    
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -99999999px;
+    transition: transform .3s ease;
+}
+
+div.pp_default a.pp_arrow_next {
+    background-image: url(../images/nav_right.png);
+    background-size: 20px 20px;    
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -99999999px;
+    transition: transform .3s ease;
+}
+
+div.pp_default a.pp_arrow_previous:hover  {
+    transform: translateX(-5px);
+}
+
+div.pp_default a.pp_arrow_next:hover  {
+    transform: translateX(5px);
+}
+
+div.pp_default .pp_close {
+    background-image: url(../images/close.png);
+    background-size: 30px 30px;
+    margin-top: 5px;
+    text-indent: -99999999px;
+    font-size: 0;
+    line-height: 0;    
+}
+
+div.pp_default .pp_next:hover  {
+    background: url(../images/nav_right.png);
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    background-size: 20px;
+}
+
+div.pp_default .pp_previous:hover {
+    background: url(../images/nav_left.png);
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: 5% 50%;
+    background-size: 20px;    
+}
+
+div.pp_default .pp_nav .currentTextHolder {
+    padding: 0 0 0 20px;
+    color: #fff;
+}
+
+div.pp_default .pp_description  {    
+    font-size: 15px;
+    line-height: 30px;
+    position: absolute;
+    top: -30px;
+    margin: 0;
+    color: #fff;
+    font-weight: 400;
+}
+
+
+
+/* ===================================
+    7. Portfolio Page CSS
+====================================== */
+
+.grid {    
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+}
+
+.grid-sizer {
+    width: calc(100% / 3);
+}
+
+.grid-item {
+    float: left;
+    font-size: 0;
+    line-height: 0;
+    width: 100%;    
+    overflow: hidden;            
+}
+
+.grid-item.p_one_third {
+    width: calc(100% / 3);
+}
+
+.grid-item.p_two_third {
+    width: calc(100% / 3 * 2);   
+}
+
+.grid-item.p_one {
+    width: 100%;
+}
+
+.grid-item img {
+    width: 100% !important;
+    height: auto;
+    display: block;    
+}
+
+.grid-item .entry-holder {
+    text-align: center;
+    background-color: #fff;
+    padding: 50px 20px;
+}
+
+.grid-item a.item-link:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
+
+.portfolio-text-holder {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    z-index: 1;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: all .3s ease;
+    text-align: center;
+}
+
+.portfolio-title {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+.portfolio-desc {
+    font-size: 10px;
+    line-height: 22px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.grid-item a.item-link:hover:after, 
+.grid-item a.item-link:hover .portfolio-text-holder {
+    opacity: 1;
+}
+
+.more-posts-portfolio-holder.hide {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
+    display: none;
+}
+
+.more-posts-portfolio-holder {
+    margin-top: 100px;
+    min-height: 1px;
+}
+
+.more-posts-portfolio, .no-more-posts-portfolio, 
+.more-posts-portfolio-loading {
+    color: #fff !important;
+    background-color: #000;
+    padding: 17px 3px 17px 14px;
+    display: inline-block;
+    font-size: 11px;
+    min-width: 170px;
+    letter-spacing: 8px;
+    transition: opacity .3s ease;
+}
+
+.more-posts-portfolio:hover, 
+.no-more-posts-portfolio:hover, 
+.more-posts-portfolio-loading:hover {
+    opacity: 0.8 !important;
+}
+
+.more-posts-portfolio {
+    cursor: pointer;   
+}
+
+.no-more-posts-portfolio, 
+.more-posts-portfolio-loading {
+    display: none;
+}
+
+.more-posts-portfolio-holder.scroll {
+    margin-top: 50px;
+}
+
+.more-posts-portfolio-holder.scroll .more-posts-portfolio, 
+.more-posts-portfolio-holder.scroll .no-more-posts-portfolio {
+    display: none !important;    
+}
+
+.more-posts-portfolio-holder.scroll .more-posts-portfolio-loading {
+    background-color: transparent;
+    font-size: 0;
+    background-image: url(../images/portfolio-loading.gif);    
+    padding: 0;
+    width: 200px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#portfolio-grid {
+    transition: all .5s ease;
+    opacity: 1;
+    transform: translateY(0px);
+    padding: 0;
+    list-style: none;
+}
+
+
+/* ===================================
+    8. Single Portfolio
+====================================== */
+
+.single-portfolio h1 {
+    padding-top: 0;
+    font-size: 22px;
+    line-height: 34px;
+}
+
+.portfolio-content:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.portfolio-item-wrapper {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+
+
+/* ===================================
+    9. Responsive CSS
+====================================== */
+
+@media screen and (max-width: 1360px) {
+    
+    .team-holder .member-info {
+        display: block !important;
+        opacity: 1 !important;
+        position: relative;
+        min-height: 180px;
+        padding: 30px 0;
+    }
+
+    .team-holder .member-name {
+        margin-top: 0;
+    }
+    
+}
+
+
+@media screen and (max-width: 1020px) {
+
+    .team-holder .member.one_third {
+        width: 50%;
+        float: left;
+    }
+
+    .team-holder .member.one_half, 
+    .team-holder .member.one_fourth {
+        width: 50%;
+        float: left;
+    }
+
+}
+
+@media screen and (max-width: 767px) {  
+
+    a.button {
+        padding-left: 35px;
+        padding-right: 35px;
+        font-size: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .grid-item, 
+    .grid-sizer {
+        width: 100% !important;
+    }      
+
+    .team-holder .member.one_third, 
+    .team-holder .member.one_half, 
+    .team-holder .member.one_fourth {
+        width: 100%;
+    }
+
+    .swiper-scrollbar {
+        width: 200px;
+        margin-left: -100px;
+    }
+    
+}

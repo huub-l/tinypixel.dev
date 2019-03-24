@@ -10,7 +10,7 @@ web/app/uploads/*
 !web/app/uploads/.gitkeep
 
 #Plugins Override
-cocobasic-shortcode
+!web/app/plugins/cocobasic-shortcode/
 
 # WordPress
 web/wp
