@@ -134,6 +134,8 @@ body .site-wrapper .sm-clean a {
 .sm-clean a:hover,
 .sm-clean a:focus,
 .sm-clean a:active {
+  text-transform: uppercase;
+  font-family: $sans;
   font-size: 16px;
   font-weight: 500;
   transition: color .3s ease, background-color .3s ease;
@@ -1459,7 +1461,7 @@ ul#footer-sidebar li.widget select {
   .sm-clean li {
       margin: 0 auto !important;
       border: 0;
-      font-family: $mono;
+      font-family: $sans;
   }
 
   .sm-clean .has-submenu {

@@ -1,5 +1,5 @@
 body {
-  font-family: $mono, sans-serif;
+  font-family: $sans, sans-serif;
   font-size: 16px;
   line-height: 27px;
   font-weight: 400;
@@ -23,7 +23,7 @@ body a:hover {
 }
 
 blockquote:not(.cocobasic-block-pullquote) {
-  font-family: $serif, sans-serif;
+  font-family: $sans, sans-serif;
   font-size: 24px;
   line-height: 40px;
   font-style: normal;
@@ -37,7 +37,7 @@ blockquote.quote-inline {
 }
 
 blockquote:not(.cocobasic-block-pullquote)::before {
-  font-family: $mono, sans-serif;
+  font-family: $sans, sans-serif;
   content: "\201C";
   font-size: 305px;
   line-height: 100%;
