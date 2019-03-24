@@ -11,15 +11,15 @@
       <img class="footer-logo" src="{!! $data->footer->image !!}" alt="{!! $site_name !!}" />
     @endisset
 
-    @isset($data->footer->copyright_content)
+    @isset($data->footer->copyright)
       <div class="copyright-holder content-1170 center-relative">
-         {!! $data->footer->copyright_content !!}
+         {!! $data->footer->copyright !!}
       </div>
     @endisset
 
-    @isset($data->footer->social_content)
+    @isset($data->footer->social)
       <div class="social-holder content-1170 center-relative">
-        {!! $data->footer->social_content !!}
+        {!! $data->footer->social !!}
       </div>
     @endisset
 

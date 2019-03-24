@@ -4,27 +4,27 @@ if (post_password_required()) {
 }
 ?>
 
-<div id="comments" class="comments-holder">	
+<div id="comments" class="comments-holder">
     <?php if (have_comments()) : ?>
         <div id="comments-wrapper">
-            <div class="block center-relative content-570">                
-                    <ol class="comments-list-holder">                 
-                        <?php wp_list_comments(array('max_depth' => 4, 'avatar_size' => 48, 'callback' => 'coco_basic_theme_comment', 'short_ping' => true)); ?>  
+            <div class="block center-relative content-570">
+                    <ol class="comments-list-holder">
+                        <?php wp_list_comments(array('max_depth' => 4, 'avatar_size' => 48, 'callback' => 'coco_basic_theme_comment', 'short_ping' => true)); ?>
                     </ol>
 
                     <div class="comments-pagination-wrapper top-20 bottom-20">
                         <div class="comments-pagination">
-                            <?php paginate_comments_links(array('prev_text' => '&laquo;', 'next_text' => '&raquo;')); ?> 
+                            <?php paginate_comments_links(array('prev_text' => '&laquo;', 'next_text' => '&raquo;')); ?>
                         </div>
-                    </div>                                        
+                    </div>
                 <div class="clear"></div>
-            </div>                           
-        </div>                               
-    <?php endif; ?>  
+            </div>
+        </div>
+    <?php endif; ?>
     <?php
     if (comments_open()) :
         echo '<div class="comment-form-holder">';
-        echo '<div class="block center-relative content-570">';        
+        echo '<div class="block center-relative content-570">';
 
         if (!isset($aria_req)) {
             $aria_req = '';
@@ -70,21 +70,21 @@ if (post_password_required()) {
                     <ul class="comment-author-date-replay-holder">
                         <li class="comment-author">
                             <?php echo comment_author(); ?>
-                        </li>                         
+                        </li>
                     </ul>
                     <p class="comment-date">
                         <?php echo get_comment_date(''); ?> <?php comment_reply_link(array_merge($args, array('add_below' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'], 'before' => '- '))) ?>
-                    </p>				
+                    </p>
                     <div class="comment-text">
                         <?php
                         if ($parent_comment_id != 0) {
                             echo '<span class="replay-at-author">@' . esc_html($get_parent_author_name) . '</span>';
                         } comment_text();
                         ?>
-                    </div>			
+                    </div>
                 </div>
                 <div class="clear"></div>
-            </div>              
+            </div>
         <?php } ?>
         <div class="clear"></div>
 </div>

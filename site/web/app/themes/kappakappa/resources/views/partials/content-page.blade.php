@@ -1,2 +1,7 @@
+
 @php the_content() @endphp
-{!! wp_link_pages(['echo' => 0, 'before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']) !!}
+@php wp_link_pages([
+    'before' => '<p class="wp-link-pages top-50"><span>'. esc_html__('Pages:', 'kapena-wp') . '</span>',
+    'after' => '</p>'
+  ])
+@endphp

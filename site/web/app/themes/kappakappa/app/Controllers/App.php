@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Sober\Controller\Controller;
+use App\Primary_Walker as Primary_Walker;
 
 class App extends Controller
 {
@@ -50,15 +51,15 @@ class App extends Controller
             ],
             'footer' => (object) [
                 'image'     => get_option('footer_image'),
-                'copyright' => $mods['copyright'],
-                'social'    => $mods['social'],
+                'copyright' => $mods['footer_copyright'],
+                'social'    => $mods['footer_social'],
             ],
         ];
     }
 
-    public function customMenu()
+    public function primaryNavigation()
     {
-        return has_nav_menu('custom_menu') ?
+        return has_nav_menu('primary_navigation') ?
             wp_nav_menu([
                 "container"       => "nav",
                 "container_class" => "",
@@ -66,13 +67,13 @@ class App extends Controller
                 "echo"            => false,
                 "fallback_cb"     => false,
                 "menu_class"      => "main-menu sm sm-clean",
-                "theme_location"  => "custom_menu",
+                "theme_location"  => "primary_navigation",
                 "items_wrap"      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                "walker"          => new cocobasic_header_menu(),
+                "walker"          => new Primary_Walker(),
             ])
         : sprintf(
             'You must add a menu for this location (%1$s)',
-            'custom_menu' // %1$s
+            'primary_navigation' // %1$s
         );
     }
 }

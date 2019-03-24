@@ -1,25 +1,14 @@
-@import "common/variables";
+/** base */
 
-/** Import everything from autoload */
-@import "./autoload/**/*";
+/* @import "vendor/font-awesome.min.css"; */
 
-/**
- * Import npm dependencies
- *
- * Prefix your imports with `~` to grab from node_modules/
- * @see https://github.com/webpack-contrib/sass-loader#imports
- */
-// @import "~some-node-module";
+@import "vendor/clear.css";
+@import "vendor/common.css";
+@import "vendor/sm-clean.css";
+@import "vendor/custom-editor-style.css";
 
-/** Import theme styles */
-@import "common/global";
-@import "components/buttons";
-@import "components/comments";
-@import "components/forms";
-@import "components/wp-classes";
-@import "layouts/header";
-@import "layouts/sidebar";
-@import "layouts/footer";
-@import "layouts/pages";
-@import "layouts/posts";
-@import "layouts/tinymce";
+/** theme */
+@import "config/fonts";
+@import "config/typography";
+@import "global/global";
+@import "global/layout";

@@ -17,6 +17,20 @@ add_action('wp_enqueue_scripts', function () {
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
+
+    //Infinite Loading JS variables for index
+    $count_posts_index = wp_count_posts('post');
+    $published_posts_index = $count_posts_index->publish;
+    $posts_per_page_index = get_option('posts_per_page');
+    $num_pages_index = ceil($published_posts_index / $posts_per_page_index);
+
+    wp_localize_script('sage/main.js', 'ajax_var', array(
+        'url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('ajax-cocobasic-posts-load-more'),
+        'posts_per_page_index' => $posts_per_page_index,
+        'total_index' => $published_posts_index,
+        'num_pages_index' => $num_pages_index
+    ));
 }, 100);
 
 /**
@@ -30,7 +44,6 @@ add_action('after_setup_theme', function () {
     add_theme_support('soil-clean-up');
     add_theme_support('soil-jquery-cdn');
     add_theme_support('soil-nav-walker');
-    add_theme_support('soil-nice-search');
     add_theme_support('soil-relative-urls');
 
     /**
@@ -90,6 +103,16 @@ add_action('widgets_init', function () {
         'name'          => __('Footer', 'sage'),
         'id'            => 'sidebar-footer'
     ] + $config);
+
+    register_sidebar([
+        'name'          => __('Footer Sidebar', 'sage'),
+        'id'            => 'footer-sidebar',
+        'description'   => __('Widgets in this area will be shown on all posts and pages.', 'kapena-wp'),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</li>',
+        'before_title'  => '<h4 class="widgettitle">',
+        'after_title'   => '</h4>',
+    ]);
 });
 
 /**
