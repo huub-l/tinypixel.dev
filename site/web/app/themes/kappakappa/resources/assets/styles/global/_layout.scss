@@ -1059,105 +1059,6 @@ a.comment-reply-link {
   color: #565656;
 }
 
-
-/* ===================================
-  7. Contact Page CSS
-====================================== */
-
-.wpcf7-form {
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.wpcf7 input[type=text],
-.wpcf7 input[type=email],
-.wpcf7 textarea {
-  font-family: $sans, sans-serif;
-  color: #000;
-  border: 0;
-  border-bottom: 2px solid;
-  height: 28px;
-  font-size: 16px;
-  line-height: 24px;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 40px;
-  background-color: transparent;
-}
-
-.wpcf7 textarea {
-  height: 150px;
-}
-
-.wpcf7 input[type=submit] {
-  font-family: 'Poppins', sans-serif;
-  border: 2px solid #000;
-  display: block;
-  color: #000;
-  background-color: transparent;
-  text-align: center;
-  padding-bottom: 25px;
-  padding-top: 25px;
-  cursor: pointer;
-  font-size: 15px;
-  vertical-align: middle;
-  text-decoration: none;
-  transition: all 0.2s linear;
-  width: 100%;
-  font-weight: 700;
-}
-
-.wpcf7 input[type=submit]:hover {
-  background-color: #000000;
-  color: #fff;
-}
-
-.wpcf7 input[type=text]::-webkit-input-placeholder,
-.wpcf7 input[type=email]::-webkit-input-placeholder,
-.wpcf7 textarea::-webkit-input-placeholder {
-  font-family: $sans, sans-serif;
-  color: #000;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 30px;
-}
-
-.wpcf7 input[type=text]::-moz-placeholder,
-.wpcf7 input[type=email]::-moz-placeholder,
-.wpcf7 textarea::-moz-placeholder {
-  font-family: $sans, sans-serif;
-  color: #000;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 30px;
-  opacity: 1;
-}
-
-.wpcf7 input[type=text]:-ms-input-placeholder,
-.wpcf7 input[type=email]:-ms-input-placeholder,
-.wpcf7 textarea:-ms-input-placeholder {
-  font-family: $sans, sans-serif;
-  color: #000;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 30px;
-}
-
-.wpcf7 input[type=text]:-moz-placeholder,
-.wpcf7 input[type=email]:-moz-placeholder,
-.wpcf7 textarea:-moz-placeholder {
-  font-family: $sans, sans-serif;
-  color: #000;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 30px;
-  opacity: 1;
-}
-
-/* END CONTACT */
-
-
-
 /* ===================================
   8. Footer CSS
 ====================================== */
@@ -1558,6 +1459,7 @@ ul#footer-sidebar li.widget select {
   .sm-clean li {
       margin: 0 auto !important;
       border: 0;
+      font-family: $mono;
   }
 
   .sm-clean .has-submenu {
