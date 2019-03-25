@@ -1,1 +1,5 @@
 mysql_root_password: "{{ vault_mysql_root_password }}" # Define this variable in group_vars/production/vault.yml
+project_root: webapps/tinypixel_dev
+www_root: webapps/tinypixel_dev/web
+web_user: tinypixel
+web_group: tinypixel
