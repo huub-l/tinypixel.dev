@@ -20,7 +20,7 @@
   composer:
     global_command: yes
     command: config
-    arguments: http-basic.packages.tinypixel.dev {{ vault_tiny_packagist_api }} satispress
+    arguments: http-basic.packages.tinypixel.io {{ vault_tiny_packagist_api }} satispress
     working_dir: "{{ deploy_helper.new_release_path }}"
   when: vault_tiny_packagist_api is defined
 
