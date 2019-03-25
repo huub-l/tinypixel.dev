@@ -15,3 +15,7 @@ wordpress_sites:
       provider: letsencrypt
     cache:
       enabled: false
+    project_root: webapps/tinypixel_dev
+    www_root: webapps/tinypixel_dev/web
+    web_user: tinypixel
+    web_group: www-data

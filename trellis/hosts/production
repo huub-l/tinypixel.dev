@@ -1,4 +1,4 @@
-tinypixel.dev ansible_host=138.68.5.29
+tinypixel.dev ansible_host=134.209.72.204
 
 [production]
 tinypixel.dev
