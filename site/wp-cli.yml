@@ -6,4 +6,4 @@ path: web/wp
 @staging:
   ssh: web@staging.tinypixel.dev/srv/www/tinypixel.dev/current
 @production:
-  ssh: web@tinypixel.dev/srv/www/tinypixel.dev/current
+  ssh: tinypixel@tinypixel.dev/srv/www/tinypixel.dev/current

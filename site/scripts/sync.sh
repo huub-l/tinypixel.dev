@@ -6,7 +6,7 @@
 DEVDIR="web/app/uploads/"
 DEVSITE="http://tinypixel.test"
 
-PRODDIR="web@tinypixel.dev:/srv/www/tinypixel.dev/shared/uploads/"
+PRODDIR="tinypixel@tinypixel.dev:/srv/www/tinypixel.dev/shared/uploads/"
 PRODSITE="https://tinypixel.dev"
 
 STAGDIR="web@staging.tinypixel.dev:/srv/www/tinypixel.dev/shared/uploads/"
