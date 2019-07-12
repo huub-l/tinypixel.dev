@@ -16,7 +16,7 @@ users:
       - https://github.com/kellymears.keys
       - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
-web_user: tinypixel
+web_user: web
 web_group: www-data
 web_sudoers:
   - "/usr/sbin/service php7.3-fpm *"
