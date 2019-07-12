@@ -4,6 +4,7 @@
   <body @php body_class() @endphp>
     @php do_action('get_header') @endphp
     <div class="site-wrapper">
+
       <div class="doc-loader"></div>
 
       @include('partials.header')

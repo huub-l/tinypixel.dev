@@ -27,7 +27,7 @@ class Walker extends Walker_Nav_Menu
             )
         );
 
-        $class_names = $class_names ? ' class="'. esc_attr($class_names) .'"' : '';
+        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
         $id = apply_filters(
             'nav_menu_item_id',
