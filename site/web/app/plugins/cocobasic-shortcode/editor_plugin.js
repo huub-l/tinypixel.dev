@@ -563,7 +563,7 @@ var addSocialIconsHtml = function () {
         H = H - 84;
         tb_show('Social Icon Shortcode', '#TB_inline?width=' + W + '&height=' + H + '&inlineId=shortcodes_socialIcons_form');
     });
-};			
+};
 
 //  BUTTON  //
 var addButtonHtml = function () {
@@ -614,4 +614,4 @@ var addButtonHtml = function () {
         H = H - 84;
         tb_show('Button Shortcode', '#TB_inline?width=' + W + '&height=' + H + '&inlineId=shortcodes_button_form');
     });
-};			 
+};

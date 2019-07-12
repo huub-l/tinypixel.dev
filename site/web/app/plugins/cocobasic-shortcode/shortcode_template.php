@@ -32,12 +32,12 @@ if (isset($_POST["name"])) {
 								<tr>
 									<th><label for="shortcode_' . $name . '_class">' . esc_html__('Class', 'cocobasic-shortcode') . '</label></th>
 									<td><input style="width:150px" name="' . $name . '" id="shortcode_' . $name . '_class" /><br /><small>' . esc_html__('additional class', 'cocobasic-shortcode') . '</small></td>
-								</tr>	
+								</tr>
 								<tr>
 									<th><label for="shortcode_' . $name . '">Columns</label></th>
 									<td><select name="' . $name . '" id="shortcode_' . $name . '"><option>1/1</option><option>1/2</option><option>1/3</option><option>2/3</option><option>1/4</option><option>3/4</option></select><br /><small>' . esc_html__('select column width', 'cocobasic-shortcode') . '</small></td>
 									<td><input type="checkbox" id="column_checkbox" name="last_checkbox" value="last">' . esc_html__('Last', 'cocobasic-shortcode') . '</td>
-								</tr>	
+								</tr>
 							</table>
 							<p class="submit">
 								<input type="button" id="submit_shortcode" class="button-primary" value="' . esc_html__('Insert Shortcode', 'cocobasic-shortcode') . '" name="submit" />
@@ -52,7 +52,7 @@ if (isset($_POST["name"])) {
                                                                 <tr>
 									<th><label for="shortcode_' . $name . '_class">' . esc_html__('Class', 'cocobasic-shortcode') . '</label></th>
 									<td><input style="width:150px" name="' . $name . '" id="shortcode_' . $name . '_class" /><br /><small>' . esc_html__('additional class', 'cocobasic-shortcode') . '</small></td>
-								</tr>	
+								</tr>
                                                                 <tr>
 									<th><label for="shortcode_' . $name . '_title">' . esc_html__('Title', 'cocobasic-shortcode') . '</label></th>
 									<td><input style="width:150px" name="' . $name . '" id="shortcode_' . $name . '_title" /><br /><small>' . esc_html__('service title', 'cocobasic-shortcode') . '</small></td>
@@ -60,11 +60,11 @@ if (isset($_POST["name"])) {
 								<tr>
 								<th><label for="shortcode_' . $name . '_img">' . esc_html__('Set Image', 'cocobasic-shortcode') . '</label></th>
 								<td><label for="upload_image">
-								<input id="shortcode_' . $name . '_img" type="text" size="36" name="shortcode_' . $name . '_img" value="" /> 
+								<input id="shortcode_' . $name . '_img" type="text" size="36" name="shortcode_' . $name . '_img" value="" />
 								<input id="upload_image_button" class="button" type="button" value="' . esc_html__('Upload Image', 'cocobasic-shortcode') . '" />
 								<br /><small>' . esc_html__('Enter a URL or upload an image', 'cocobasic-shortcode') . '</small>
 								</label>
-								</td>	
+								</td>
 								</tr>
 								<tr>
 									<th><label for="shortcode_' . $name . '_alt">' . esc_html__('Alt tag for image', 'cocobasic-shortcode') . '</label></th>
@@ -111,11 +111,11 @@ if (isset($_POST["name"])) {
 								<tr>
 								<th><label for="shortcode_' . $name . '_img">' . esc_html__('Set Image', 'cocobasic-shortcode') . '</label></th>
 								<td><label for="upload_image">
-								<input id="shortcode_' . $name . '_img" type="text" size="36" name="shortcode_' . $name . '_img" value="" /> 
+								<input id="shortcode_' . $name . '_img" type="text" size="36" name="shortcode_' . $name . '_img" value="" />
 								<input id="upload_image_button" class="button" type="button" value="' . esc_html__('Upload Image', 'cocobasic-shortcode') . '" />
 								<br /><small>' . esc_html__('Enter a URL or upload an image', 'cocobasic-shortcode') . '</small>
 								</label>
-								</td>	
+								</td>
 								</tr>
 								<tr>
 									<th><label for="shortcode_' . $name . '_alt">' . esc_html__('Alt tag for image', 'cocobasic-shortcode') . '</label></th>
@@ -139,7 +139,7 @@ if (isset($_POST["name"])) {
 
         case "teamMember" : {
                 $response = '<div id="shortcodes_' . $name . '_form">
-						 	<table id="cocobasic_shortcode_' . $name . '">							
+						 	<table id="cocobasic_shortcode_' . $name . '">
 								<tr>
 									<th><label for="shortcode_' . $name . '_class">' . esc_html__('Class', 'cocobasic-shortcode') . '</label></th>
 									<td><input style="width:150px" name="' . $name . '" id="shortcode_' . $name . '_class" /><br /><small>' . esc_html__('additional class (optional)', 'cocobasic-shortcode') . '</small></td>
@@ -155,11 +155,11 @@ if (isset($_POST["name"])) {
 								<tr>
 								<th><label for="shortcode_' . $name . '_img">' . esc_html__('Set Image', 'cocobasic-shortcode') . '</label></th>
 								<td><label for="upload_image">
-								<input id="shortcode_' . $name . '_img" type="text" size="36" name="shortcode_' . $name . '_img" value="" /> 
+								<input id="shortcode_' . $name . '_img" type="text" size="36" name="shortcode_' . $name . '_img" value="" />
 								<input id="upload_image_button" class="button" type="button" value="' . esc_html__('Upload Image', 'cocobasic-shortcode') . '" />
 								<br /><small>' . esc_html__('Enter a URL or upload an image', 'cocobasic-shortcode') . '</small>
 								</label>
-								</td>	
+								</td>
 								</tr>
 								<tr>
 									<th><label for="shortcode_' . $name . '_alt">' . esc_html__('Alt tag for image', 'cocobasic-shortcode') . '</label></th>
@@ -188,7 +188,7 @@ if (isset($_POST["name"])) {
 								<tr>
 									<th><label for="shortcode_button_icon">' . esc_html__('Icon', 'cocobasic-shortcode') . '</label></th>
 									<td><select name="' . $name . '" id="shortcode_' . $name . '_icon"><option>facebook</option><option>twitter</option><option>instagram</option><option>google-plus</option><option>google-plus-square</option><option>dribbble</option><option>youtube-play</option><option>vine</option><option>linkedin</option><option>linkedin-square</option><option>skype</option><option>pinterest</option><option>pinterest-square</option><option>github</option><option>wordpress</option></select></td>
-								</tr>							
+								</tr>
 								<tr>
 									<th><label for="shortcode_' . $name . '_href">' . esc_html__('Link', 'cocobasic-shortcode') . '</label></th>
 									<td><input style="width:400px" name="' . $name . '" id="shortcode_' . $name . '_href" /><br /><small>' . esc_html__('URL to the social page/account', 'cocobasic-shortcode') . '</small></td>
@@ -196,7 +196,7 @@ if (isset($_POST["name"])) {
 								<tr>
 									<th><label for="shortcode_' . $name . '_target">' . esc_html__('Target', 'cocobasic-shortcode') . '</label></th>
 									<td><select name="' . $name . '" id="shortcode_' . $name . '_target"><option>_self</option><option>_blank</option></select><br /><small>' . esc_html__('open link in same/new tab', 'cocobasic-shortcode') . '</small></td>
-								</tr>							
+								</tr>
 							</table>
 							<p class="submit">
 								<input type="button" id="submit_shortcode" class="button-primary" value="' . esc_html__('Insert Shortcode', 'cocobasic-shortcode') . '" name="submit" />
@@ -211,7 +211,7 @@ if (isset($_POST["name"])) {
 								<tr>
 									<th><label for="shortcode_' . $name . '_class">' . esc_html__('Class', 'cocobasic-shortcode') . '</label></th>
 									<td><input style="width:150px" name="' . $name . '" id="shortcode_' . $name . '_class" /><br /><small>' . esc_html__('additional class (optional)', 'cocobasic-shortcode') . '</small></td>
-								</tr>							
+								</tr>
 								<tr>
 									<th><label for="shortcode_' . $name . '_href">' . esc_html__('Href', 'cocobasic-shortcode') . '</label></th>
 									<td><input style="width:400px" name="' . $name . '" id="shortcode_' . $name . '_href" /><br /><small>' . esc_html__('url to the linked page', 'cocobasic-shortcode') . '</small></td>
