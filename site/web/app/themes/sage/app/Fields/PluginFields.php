@@ -3,26 +3,34 @@
 namespace App\Fields;
 
 use \StoutLogic\AcfBuilder\FieldsBuilder;
-use \App\Fields\Fields;
-
 use Roots\Acorn\Application;
 
-class PluginFields extends Fields
+class PluginFields
 {
-    public function builder()
+    public function __construct(Application $app)
     {
-        return [
-            'name' => 'Plugin',
-            'style' => 'seamless',
-        ];
+        $this->app = $app;
+
+        add_action('acf/init', function () {
+            acf_add_local_field_group($this->group->build());
+        });
     }
 
-    public function fields(FieldsBuilder $builder)
+    public function init()
     {
-        return $builder
-            ->addGroup('plugin', ['label' => 'Plugin'])
-                ->addText('name', ['label' => 'Plugin name'])
+        $builder = $this->app->makeWith('builder', [
+            'name' => 'Plugin'
+        ]);
+
+        $this->group = $this->addFields($builder);
+    }
+
+    public function addFields($builder)
+    {
+        $builder
                 ->addTextArea('description', ['label' => 'Plugin description'])
-            ->endGroup();
+                ->setLocation('post_type', '==', 'plugin');
+
+        return $builder;
     }
 }
