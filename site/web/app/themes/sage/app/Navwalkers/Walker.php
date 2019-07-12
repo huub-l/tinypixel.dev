@@ -1,13 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Navwalkers;
 
 use \Walker_Nav_Menu as Walker_Nav_Menu;
 
-/**
- * Primary_Walker
- */
-class Primary_Walker extends Walker_Nav_Menu
+class Walker extends Walker_Nav_Menu
 {
     public $number = 1;
 
@@ -34,14 +31,14 @@ class Primary_Walker extends Walker_Nav_Menu
 
         $id = apply_filters(
             'nav_menu_item_id',
-            'menu-item-'. $item->ID,
+            "menu-item-{$item->ID}",
             $item,
             $args
         );
 
-        $id = $id ? ' id="'. esc_attr($id) .'"' : '';
+        $id = $id ? ' id="' . esc_attr($id) . '"' : '';
 
-        $output .= $indent .'<li' . $id . $value . $class_names . '>';
+        $output .= $indent . '<li' . $id . $value . $class_names . '>';
 
         $atts = array();
         $atts = [
@@ -62,12 +59,12 @@ class Primary_Walker extends Walker_Nav_Menu
         foreach ($atts as $attr => $value) {
             if (!empty($value)) {
                 $value = ('href' === $attr) ? esc_url($value) : esc_attr($value);
-                $attributes .= ' '. $attr .'="'. $value .'"';
+                $attributes .= ' ' . $attr . '="' . $value . '"';
             }
         }
 
         $item_output = $args->before;
-        $item_output .= '<a'. $attributes .'>';
+        $item_output .= '<a' . $attributes . '>';
         $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
         $item_output .= '</a>';
         $item_output .= $args->after;

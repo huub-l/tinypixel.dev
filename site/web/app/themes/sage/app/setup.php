@@ -2,21 +2,42 @@
 
 namespace App;
 
-use Roots\Sage\Container;
-use Roots\Sage\Assets\JsonManifest;
-use Roots\Sage\Template\Blade;
-use Roots\Sage\Template\BladeProvider;
+use function Roots\asset;
+use function Roots\config;
+use function Roots\view;
 
 /**
  * Theme assets
  */
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('sage/main.css', asset_path('styles/main.css'), false, null);
-    wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
+    wp_enqueue_script('sage/vendor', asset('scripts/vendor.js')->uri(), ['jquery'], null, true);
+    wp_enqueue_script('sage/app', asset('scripts/app.js')->uri(), ['sage/vendor', 'jquery'], null, true);
+
+    wp_add_inline_script('sage/vendor', asset('scripts/manifest.js')->contents(), 'before');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
+
+    $styles = ['styles/app.css'];
+
+    foreach ($styles as $stylesheet) {
+        if (asset($stylesheet)->exists()) {
+            wp_enqueue_style('sage/' . basename($stylesheet, '.css'), asset($stylesheet)->uri(), false, null);
+        }
+    }
+
+    $published_posts_index = (wp_count_posts('post'))->publish;
+    $posts_per_page_index = get_option('posts_per_page');
+    $num_pages_index = ceil((wp_count_posts('post'))->publish / get_option('posts_per_page'));
+
+    wp_localize_script('sage/app', 'ajax_var', [
+        'url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('ajax-cocobasic-posts-load-more'),
+        'posts_per_page_index' => $posts_per_page_index,
+        'total_index' => $published_posts_index,
+        'num_pages_index' => $num_pages_index
+    ]);
 }, 100);
 
 /**
@@ -30,6 +51,7 @@ add_action('after_setup_theme', function () {
     add_theme_support('soil-clean-up');
     add_theme_support('soil-jquery-cdn');
     add_theme_support('soil-nav-walker');
+    add_theme_support('soil-nice-search');
     add_theme_support('soil-relative-urls');
 
     /**
@@ -66,9 +88,9 @@ add_action('after_setup_theme', function () {
 
     /**
      * Use main stylesheet for visual editor
-     * @see resources/assets/styles/layouts/_tinymce.scss
+     * @see resources/assets/styles/layouts/tinymce.scss
      */
-    add_editor_style(asset_path('styles/main.css'));
+    add_editor_style(asset('styles/app.css')->uri());
 }, 20);
 
 /**
@@ -99,43 +121,4 @@ add_action('widgets_init', function () {
         'before_title'  => '<h4 class="widgettitle">',
         'after_title'   => '</h4>',
     ]);
-});
-
-/**
- * Updates the `$post` variable on each iteration of the loop.
- * Note: updated value is only available for subsequently loaded views, such as partials
- */
-add_action('the_post', function ($post) {
-    sage('blade')->share('post', $post);
-});
-
-/**
- * Setup Sage options
- */
-add_action('after_setup_theme', function () {
-    /**
-     * Add JsonManifest to Sage container
-     */
-    sage()->singleton('sage.assets', function () {
-        return new JsonManifest(config('assets.manifest'), config('assets.uri'));
-    });
-
-    /**
-     * Add Blade to Sage container
-     */
-    sage()->singleton('sage.blade', function (Container $app) {
-        $cachePath = config('view.compiled');
-        if (!file_exists($cachePath)) {
-            wp_mkdir_p($cachePath);
-        }
-        (new BladeProvider($app))->register();
-        return new Blade($app['view']);
-    });
-
-    /**
-     * Create @asset() Blade directive
-     */
-    sage('blade')->compiler()->directive('asset', function ($asset) {
-        return "<?= " . __NAMESPACE__ . "\\asset_path({$asset}); ?>";
-    });
 });

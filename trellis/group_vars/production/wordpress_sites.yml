@@ -4,6 +4,8 @@ wordpress_sites:
     - canonical: tinypixel.dev
       redirects:
       - www.tinypixel.dev
+      - tinypixel.io
+      - www.tinypixel.io
     local_path: ../site
     branch: master
     repo: git@github.com:pixelcollective/tinypixel.dev.git

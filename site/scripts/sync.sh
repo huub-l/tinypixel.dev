@@ -4,9 +4,9 @@
 # Copyright (c) Ben Word
 
 DEVDIR="web/app/uploads/"
-DEVSITE="http://tinypixel.test"
+DEVSITE="https://tinypixel.valet"
 
-PRODDIR="tinypixel@tinypixel.dev:/srv/www/tinypixel.dev/shared/uploads/"
+PRODDIR="web@tinypixel.dev:/srv/www/tinypixel.dev/shared/uploads/"
 PRODSITE="https://tinypixel.dev"
 
 STAGDIR="web@staging.tinypixel.dev:/srv/www/tinypixel.dev/shared/uploads/"
@@ -14,15 +14,20 @@ STAGSITE="https://staging.tinypixel.dev"
 
 FROM=$1
 TO=$2
+LOCAL=false
+
+if [[ $3 == "--local" ]]; then
+  LOCAL=true
+fi
 
 bold=$(tput bold)
 normal=$(tput sgr0)
 
 case "$1-$2" in
-  production-development) DIR="down ⬇️ "           FROMSITE=$PRODSITE; FROMDIR=$PRODDIR; TOSITE=$DEVSITE;  TODIR=$DEVDIR; ;;
-  staging-development)    DIR="down ⬇️ "           FROMSITE=$STAGSITE; FROMDIR=$STAGDIR; TOSITE=$DEVSITE;  TODIR=$DEVDIR; ;;
-  development-production) DIR="up ⬆️ "             FROMSITE=$DEVSITE;  FROMDIR=$DEVDIR;  TOSITE=$PRODSITE; TODIR=$PRODDIR; ;;
-  development-staging)    DIR="up ⬆️ "             FROMSITE=$DEVSITE;  FROMDIR=$DEVDIR;  TOSITE=$STAGSITE; TODIR=$STAGDIR; ;;
+  production-development) DIR="down ⬇️ "          FROMSITE=$PRODSITE; FROMDIR=$PRODDIR; TOSITE=$DEVSITE;  TODIR=$DEVDIR; ;;
+  staging-development)    DIR="down ⬇️ "          FROMSITE=$STAGSITE; FROMDIR=$STAGDIR; TOSITE=$DEVSITE;  TODIR=$DEVDIR; ;;
+  development-production) DIR="up ⬆️ "            FROMSITE=$DEVSITE;  FROMDIR=$DEVDIR;  TOSITE=$PRODSITE; TODIR=$PRODDIR; ;;
+  development-staging)    DIR="up ⬆️ "            FROMSITE=$DEVSITE;  FROMDIR=$DEVDIR;  TOSITE=$STAGSITE; TODIR=$STAGDIR; ;;
   production-staging)     DIR="horizontally ↔️ ";  FROMSITE=$PRODSITE; FROMDIR=$PRODDIR; TOSITE=$STAGSITE; TODIR=$STAGDIR; ;;
   staging-production)     DIR="horizontally ↔️ ";  FROMSITE=$STAGSITE; FROMDIR=$STAGDIR; TOSITE=$PRODSITE; TODIR=$PRODDIR; ;;
   *) echo "usage: $0 production development | staging development | development staging | development production | staging production | production staging" && exit 1 ;;
@@ -40,7 +45,12 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
   # Make sure both environments are available before we continue
   availfrom() {
     local AVAILFROM
-    AVAILFROM=$(wp "@$FROM" option get home 2>&1)
+
+    if [[ "$LOCAL" = true && $FROM == "development" ]]; then
+      AVAILFROM=$(wp option get home 2>&1)
+    else
+      AVAILFROM=$(wp "@$FROM" option get home 2>&1)
+    fi
     if [[ $AVAILFROM == *"Error"* ]]; then
       echo "❌  Unable to connect to $FROM"
       exit 1
@@ -52,7 +62,12 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 
   availto() {
     local AVAILTO
-    AVAILTO=$(wp "@$TO" option get home 2>&1)
+    if [[ "$LOCAL" = true && $TO == "development" ]]; then
+      AVAILTO=$(wp option get home 2>&1)
+    else
+      AVAILTO=$(wp "@$TO" option get home 2>&1)
+    fi
+
     if [[ $AVAILTO == *"Error"* ]]; then
       echo "❌  Unable to connect to $TO"
       exit 1
@@ -64,10 +79,22 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
   echo
 
   # Export/import database, run search & replace
-  wp "@$TO" db export &&
-  wp "@$TO" db reset --yes &&
-  wp "@$FROM" db export - | wp "@$TO" db import - &&
-  wp "@$TO" search-replace "$FROMSITE" "$TOSITE" &&
+  if [[ "$LOCAL" = true && $TO == "development" ]]; then
+    wp db export &&
+    wp db reset --yes &&
+    wp "@$FROM" db export - | wp db import - &&
+    wp search-replace "$FROMSITE" "$TOSITE"
+  elif [[ "$LOCAL" = true && $FROM == "development" ]]; then
+    wp "@$TO" db export &&
+    wp "@$TO" db reset --yes &&
+    wp db export - | wp "@$TO" db import - &&
+    wp "@$TO" search-replace "$FROMSITE" "$TOSITE"
+  else
+    wp "@$TO" db export &&
+    wp "@$TO" db reset --yes &&
+    wp "@$FROM" db export - | wp "@$TO" db import - &&
+    wp "@$TO" search-replace "$FROMSITE" "$TOSITE"
+  fi
 
   # Sync uploads directory
   chmod -R 755 web/app/uploads/ &&

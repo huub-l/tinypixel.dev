@@ -1,8 +1,0 @@
-<wpml-config>
-	<admin-texts>		
-		<key name="theme_mods_kapena-wp">
-			<key name="cocobasic_footer_copyright_content"/>
-			<key name="cocobasic_footer_social_content"/>
-		</key>
-	</admin-texts>
-</wpml-config>

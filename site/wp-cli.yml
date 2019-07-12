@@ -3,7 +3,9 @@ path: web/wp
 
 @development:
   ssh: vagrant@tinypixel.test/srv/www/tinypixel.dev/current
+
 @staging:
   ssh: web@staging.tinypixel.dev/srv/www/tinypixel.dev/current
+
 @production:
   ssh: tinypixel@tinypixel.dev/srv/www/tinypixel.dev/current
