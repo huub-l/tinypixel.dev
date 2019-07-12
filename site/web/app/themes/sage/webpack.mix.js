@@ -15,18 +15,10 @@ mix.browserSync('example.test')
 mix.sass(src`styles/app.scss`, 'styles')
 
 mix.js(src`scripts/app.js`, 'scripts')
-  .js(src`scripts/customizer.js`, 'scripts')
-  .extract()
+    .js(src`scripts/customizer.js`, 'scripts')
+    .extract()
 
 mix.copyDirectory(src`images`, publicPath`images`)
-  .copyDirectory(src`fonts`, publicPath`fonts`)
-  .autoload({ jquery: ['$', 'window.jQuery'] })
-  .options({ processCssUrls: false })
-
-if (!mix.inProduction()) {
-  mix.sourceMaps()
-}
-
-if (mix.inProduction()) {
-  mix.version()
-}
+    .copyDirectory(src`fonts`, publicPath`fonts`)
+    .autoload({ jquery: ['$', 'window.jQuery'] })
+    .options({ processCssUrls: false })
