@@ -3,9 +3,7 @@
 namespace App\Providers;
 
 use \StoutLogic\AcfBuilder\FieldsBuilder;
-
 use \App\Fields\PluginFields;
-
 use Roots\Acorn\ServiceProvider;
 
 class BuilderServiceProvider extends ServiceProvider
@@ -17,6 +15,8 @@ class BuilderServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        (new PluginFields($this->app))->init();
+        $pluginFields = new PluginFields($this->app);
+
+        $pluginFields->init();
     }
 }

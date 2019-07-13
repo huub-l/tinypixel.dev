@@ -11,21 +11,31 @@ class PluginFields extends Fields
     public function builder()
     {
         return [
-            'name' => 'Plugin',
+            'name'  => 'Plugin',
             'style' => 'seamless',
             'ui'    => 'true',
         ];
     }
 
-    public function fields(FieldsBuilder $builder)
+    public function fields($builder)
     {
-        return $builder
-            ->addTab('Plugin', ['placement' => 'left'])
+        $builder
+            ->addTab('Plugin', [
+                'placement' => 'left'
+                ])
                 ->addGroup('plugin', ['label' => 'Plugin'])
-                    ->addText('name', ['label' => 'Plugin name'])
-                    ->addUrl('github', ['label' => 'Github'])
-                    ->addTextArea('description', ['label' => 'Plugin description'])
+                    ->addText('name', [
+                        'label' => 'Plugin name'
+                    ])
+                    ->addUrl('github', [
+                        'label' => 'Github'
+                    ])
+                    ->addTextArea('description', [
+                        'label' => 'Plugin description'
+                    ])
                 ->endGroup();
+
+        return $builder;
     }
 
     public function location()
