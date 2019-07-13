@@ -2,6 +2,8 @@
 
 namespace App\Composers;
 
+use function \get_field_objects;
+
 use App\Navwalkers\Walker;
 use Roots\Acorn\View\Composer;
 
@@ -14,6 +16,7 @@ class Plugin extends Composer
      */
     protected static $views = [
         'partials.single-plugin-*',
+        'partials.plugin-meta',
     ];
 
     /**
@@ -25,17 +28,24 @@ class Plugin extends Composer
      */
     public function with($data, $view)
     {
-        $mods = get_theme_mods();
+        $this->id = \get_the_ID();
 
-        return $data = [
-            'fields' => $this->getFields(),
-        ];
+        $this->groupQuery = [$this->id, 'plugin'];
+
+        return $data = ['plugin' => $this->getGroupFields(
+            ...$this->groupQuery
+        )];
     }
 
-    public function getFields()
+    public function getGroupFields($postId, $groupName)
     {
-        if (function_exists('get_fields')) {
-            $this->fields = get_fields();
+        if (!function_exists('get_field_objects')) {
+            return;
         }
+
+        $groups = (object) collect(\get_field_objects($postId));
+        $fields = (object) $groups->get("{$groupName}")['value'];
+
+        return $fields;
     }
 }
