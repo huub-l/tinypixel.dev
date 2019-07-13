@@ -2,7 +2,7 @@
 
 namespace App\Fields;
 
-use function \acf_add_options_page;
+use function \acf_add_local_field_group;
 
 use Roots\Acorn\Application;
 
@@ -15,21 +15,25 @@ class Fields
 
     public function init()
     {
-        $builder = $this->app->makeWith('builder', $this->builder());
+        $this->builder = $this->app->makeWith('builder', $this->builder());
+        $this->addFields($this->builder);
+        $this->setLocation();
 
-        $builder = $this->fields($builder);
+        add_action('acf/init', [$this, 'build']);
+    }
 
-        $builder->setLocation('post_type', '==', 'plugin');
+    public function addFields()
+    {
+        $this->fields($this->builder);
+    }
 
-        add_action('acf/init', function () use ($builder) {
-            if (function_exists('acf_add_local_field_group')) {
-                acf_add_local_field_group($builder);
-            }
-        });
+    public function setLocation()
+    {
+        $this->builder->setLocation(...$this->location());
     }
 
     public function build()
     {
-
+        \acf_add_local_field_group($this->builder->build());
     }
 }
