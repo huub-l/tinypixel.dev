@@ -119,3 +119,14 @@ body pre {
   clear: both;
   display: block;
 }
+
+.inline-icon {
+  padding-top: 2rem;
+  svg {
+    display: inline-block;
+    line-height: 1rem;
+    padding-right: 0.5rem;
+    position: relative;
+    top: 0.2rem;
+  }
+}

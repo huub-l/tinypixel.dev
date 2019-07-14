@@ -2,9 +2,7 @@
 
 @section('content')
   <div id="content" class="site-content">
-    <div class="header-content center-relative block archive-title">
-      <h1 class="entry-title">{!! App::title() !!}</h1>
-    </div>
+    @include('partials.header-archive')
     <div class="clear"></div>
     <div class="blog-holder block center-relative">
       @while(have_posts()) @php the_post() @endphp

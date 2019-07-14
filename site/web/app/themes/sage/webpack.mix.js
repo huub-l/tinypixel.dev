@@ -18,7 +18,9 @@ mix.js(src`scripts/app.js`, 'scripts')
     .js(src`scripts/customizer.js`, 'scripts')
     .extract()
 
-mix.copyDirectory(src`images`, publicPath`images`)
-    .copyDirectory(src`fonts`, publicPath`fonts`)
-    .autoload({ jquery: ['$', 'window.jQuery'] })
-    .options({ processCssUrls: false })
+mix
+  .copyDirectory(src`images`, publicPath`images`)
+  .copyDirectory(src`fonts`, publicPath`fonts`)
+  .copyDirectory(src`svg`, publicPath`svg`)
+  .autoload({ jquery: ['$', 'window.jQuery'] })
+  .options({ processCssUrls: false })

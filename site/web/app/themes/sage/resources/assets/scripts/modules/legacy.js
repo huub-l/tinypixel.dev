@@ -58,7 +58,7 @@ const loadArticleIndex = (pageNumber) => {
         $('.blog-holder').append(html)
         setTimeout(function () {
           animateElement()
-          showBlogPostFeatureImge()
+          showBlogFeatureImage()
           if (count == ajax_var.num_pages_index) {
             $('.more-posts').css('display', 'none')
             $('.more-posts-loading').css('display', 'none')
@@ -91,11 +91,11 @@ const loadMorePostsItemsOnScroll = e => {
   })
 }
 
-const showFirstBlogPostFeatureImge = () => {
+const showFirstBlogPostFeatureImage = () => {
   $('.blog-item-holder .entry-holder').first().addClass('active-post')
 }
 
-const showBlogPostFeatureImge = () => {
+const showBlogFeatureImage = () => {
   $('.blog-item-holder .entry-holder').on('hover', function () {
       $('.blog-item-holder .entry-holder').removeClass('active-post')
       $(this).addClass('active-post')
@@ -108,23 +108,26 @@ const fixPullquoteClass = () => {
 
 /*eslint-enable */
 const doLegacy = () => {
-  /*eslint-disable-next-line */
-  var count = 1
-  var currentPositionPosts = $(window).scrollTop()
+  let scrollPosition = window.document.scrollTop
   fixPullquoteClass()
 
-  $(window).on('scroll', () => {
-    var scrollPosts = $(window).scrollTop()
-    if (scrollPosts > currentPositionPosts) { //Load only on scroll down
+  window.document.addEventListener('scroll', () => {
+    let currentScroll = window.document.scrollTop
+    if (currentScroll > scrollPosition) {
       loadMorePostsItemsOnScroll()
     }
-    currentPositionPosts = scrollPosts
+
+    scrollPosition = currentScroll
   })
 
   //Fix for Default menu
-  $('.default-menu ul:first').addClass('sm sm-clean main-menu')
+  document.querySelectorAll('.default-menu ul:first-child').forEach(element => {
+    element.classList.addClass('sm sm-clean main-menu')
+  })
 
-  //Set menu
+  /**
+   * Todo: replace smartmenus
+   */
   $('.main-menu').smartmenus({
     subMenusSubOffsetX: 1,
     subMenusSubOffsetY: -8,
@@ -155,22 +158,9 @@ const doLegacy = () => {
 
   loadMoreArticleIndex()
 
-  //Fix for No-Commnets
-  $('#comments').each(function () {
-    if ($.trim($(this).html()) === '') {
-      $(this).remove()
-    }
-  })
-
-  $('.single-post .num-comments a, .single-portfolio .num-comments a').on('click', e => {
-    e.preventDefault()
-    $('html, body').animate({scrollTop: $(this.hash).offset().top}, 2000)
-    return false
-  })
-
   //Blog show feature image
-  showFirstBlogPostFeatureImge()
-  showBlogPostFeatureImge()
+  showFirstBlogPostFeatureImage()
+  showBlogFeatureImage()
 
   //Placeholder show/hide
   $('input, textarea').on('focus', function () {
@@ -185,6 +175,10 @@ const doLegacy = () => {
   //Show-Hide header sidebar
   $('#toggle').on('click', multiClickFunctionStop)
 
+ /*  document.querySelector('#toggle').addEventListener('mousedown', function () {
+    document.querySelector('body').classList.toggle('on')
+  }) */
+
   $(window).on('load', function () {
     // Animate the elemnt if is allready visible on load
     animateElement()
@@ -197,9 +191,7 @@ const doLegacy = () => {
     $('.doc-loader').fadeOut(300)
   })
 
-  $(window).on('scroll', function () {
-    animateElement()
-  })
+  document.addEventListener('scroll', () => animateElement())
 }
 
 export default doLegacy

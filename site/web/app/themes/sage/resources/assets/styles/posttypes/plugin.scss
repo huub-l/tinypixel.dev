@@ -1,3 +1,4 @@
+.post-type-archive-plugin,
 .single-plugin {
   .label {
     letter-spacing: 0.3ch;
@@ -6,6 +7,9 @@
 
   .single-post-header-content {
     h1.entry-title {
+      svg {
+        display: inline-block; height: 32px;
+      }
       margin-left: 0;
       margin-bottom: 0;
       text-align: left;
@@ -87,6 +91,20 @@
         transition: background 200ms ease-in-out;
       }
 
+      i {
+        display: inline-block;
+        max-width: 16px;
+        padding-right: 0.5rem;
+
+        svg {
+          height: 16px;
+          width: 16px;
+          display: inline;
+          color: white;
+          fill: white;
+        }
+      }
+
       @media screen and (max-width: 1020px) {
         max-width: 300px;
         margin: 0 auto;
@@ -116,14 +134,36 @@
 
     .plugin-requirements {
       > .field-label {
-        display: inline-block;
-        width: 100%;
         font-weight: 700;
       }
 
       .fieldset {
+        display: block;
+        width: 100%;
+
         .field-label {
           font-weight: 500;
+
+          .tech-icon {
+            display: inline-block;
+            max-width:24px;
+            width:24px;
+            height:24px;
+            line-height:24px;
+            padding-right: 0.5rem;
+
+            svg {
+              display: inline-block;
+              width:24px;
+              height:24px;
+              line-height:24px;
+              position: relative;
+              top: 6px;
+              display: inline;
+              color: black;
+              fill: black;
+            }
+          }
         }
       }
     }
@@ -145,5 +185,15 @@
 
   pre, code, p code, pre code {
     font-family: $mono !important;
+  }
+
+  .plugin-archive {
+    margin-top: 4rem;
+  }
+
+  .entry-holder {
+    display: inline-block;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }

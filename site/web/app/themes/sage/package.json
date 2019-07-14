@@ -40,6 +40,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-brands-svg-icons": "^5.9.0",
     "highlight.js": "^9.15.8",
+    "hoverflair.js": "^0.0.1",
     "imagesloaded": "^4.1.4",
     "jquery": "^3.4",
     "js-dom-router": "^1.0",

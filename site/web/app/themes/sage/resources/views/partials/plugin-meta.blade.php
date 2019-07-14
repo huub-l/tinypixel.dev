@@ -24,7 +24,7 @@
         <div>
           <span>
             <a class="plugin-download" href="{!! $plugin->downloadUrl !!}" title="Download {!! $plugin->name !!}">
-              {{ __('Download', 'sage') }} v{!! $plugin->downloadVersion !!}
+              <i class="white">@svg('fa/solid/download')</i> {{ __('Download', 'sage') }} v{!! $plugin->downloadVersion !!}
             </a>
           </span>
         </div>
@@ -53,7 +53,12 @@
                 <span class="fieldset">
                   @if($requirement['technology'])
                     <span class="field-label">
-                      {!! $requirement['technology'] !!}
+                      @if(strtolower($requirement['technology'])=='wordpress')
+                        <i class="tech-icon" width="16px">@svg('fa/brands/wordpress-simple')</i>
+                      @elseif(strtolower($requirement['technology'])=='php')
+                        <i class="tech-icon" width="16px">@svg('fa/brands/php')</i>
+                      @endif
+                      <span>{!! $requirement['technology'] !!}</span>
                     </span>
                   @endif
 

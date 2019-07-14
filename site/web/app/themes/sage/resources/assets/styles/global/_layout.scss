@@ -16,7 +16,7 @@ Text Domain: kapena-wp
 /*------------------------------------------------------------------
 [Table of contents]
 1. Global CSS
-        1.1 Global Header Logo/Menu CSS
+1.1 Global Header Logo/Menu CSS
 2. Blog Page CSS
 3. General Page CSS
 4. Single Post CSS
@@ -65,6 +65,11 @@ Text Domain: kapena-wp
   position: absolute;
   transform: translateY(-50%);
   top: 50%;
+
+  svg {
+    width: 200px;
+    max-width: 80vw;
+  }
 }
 
 .menu-holder {
@@ -1106,7 +1111,7 @@ footer ul {
 }
 
 .copyright-holder {
-  margin-top: 35px;
+  margin-top: 2rem;
 }
 
 .copyright-holder a {
@@ -1185,6 +1190,41 @@ footer ul {
   font-weight: 400;
   opacity: 1;
   text-align: left;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+/* .footer-content {
+  svg {
+    overflow: visible;
+    margin-top: 2.6rem;
+    width: 55px;
+    height: 55px;
+    padding: 1rem;
+
+    g.logo-paths {
+      padding: 1rem;
+
+      polygon:not([class='pixel']),
+      path {
+        animation: rotation 10s infinite linear;
+        transform-origin: 50% 50%;
+      }
+    }
+  }
+} */
+
+.footer-content svg {
+  animation: rotation 80s infinite linear;
+  margin-top: 2.6rem;
+  width: 80px;
 }
 
 ul#footer-sidebar li.widget  {

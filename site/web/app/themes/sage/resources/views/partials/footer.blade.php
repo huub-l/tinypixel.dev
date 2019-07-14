@@ -7,7 +7,7 @@
         @endif
 
         @isset($footer->image)
-            <img class="footer-logo" src="{!! $footer->image !!}" alt="{!! $site_name !!}" />
+          @svg('logo-circle')
         @endisset
 
         @isset($footer->copyright)
