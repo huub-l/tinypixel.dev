@@ -75,6 +75,7 @@ return [
         App\Composers\Title::class,
         App\Composers\Header::class,
         App\Composers\Footer::class,
+        App\Composers\Plugin::class,
     ],
 
     /*

@@ -1,0 +1,129 @@
+.single-plugin {
+  .label {
+    letter-spacing: 0.3ch;
+    text-transform: uppercase;
+  }
+
+  .single-post-header-content {
+    h1.entry-title {
+      margin-left: 0;
+      margin-bottom: 0;
+      text-align: left;
+    }
+
+    .plugin-description {
+      display: inline-block;
+      padding-bottom: 2rem;
+    }
+  }
+
+  .post-info-wrapper {
+    width: 200px;
+  }
+
+  .plugin-meta {
+    .meta-label {
+      margin-bottom: 0;
+      padding-bottom: 0;
+
+      &:first-child {
+        padding-top: 12px;
+        padding-bottom: 6px;
+      }
+    }
+
+    .text-holder,
+    span[class^="plugin-"] {
+      color: rgb(20, 20, 20);
+      font-size: 1rem;
+    }
+
+    .text-holder {
+      display: block;
+      padding-bottom: 0.75rem;
+    }
+
+    .plugin-name {
+      margin-bottom: 0.5rem;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-weight: 600;
+
+      > span {
+        font-size: 1.25rem;
+        letter-spacing: 0.05ch;
+        color: black;
+        text-transform: uppercase;
+      }
+    }
+
+    .plugin-download {
+      display: inline-block;
+      width: 100%;
+      padding: 0.5rem 0rem;
+      background: black;
+      color: white;
+      border-radius: 3px;
+      text-align: center;
+      transition: background 200ms ease-in-out;
+
+      &:hover {
+        background: #f92672;
+        transition: background 200ms ease-in-out;
+      }
+    }
+
+    .fields {
+      .field {
+        letter-spacing: 0.1ch;
+        text-transform: uppercase;
+        color: rgb(20, 20, 20);
+        margin-bottom: 0.25rem;
+
+        a {
+          color: rgb(20, 20, 20);
+        }
+
+        &-label {
+          font-weight: 700;
+        }
+
+        &-value {
+          letter-spacing: 0.15ch;
+        }
+      }
+    }
+
+    .plugin-requirements {
+      > .field-label {
+        display: inline-block;
+        width: 100%;
+        font-weight: 700;
+      }
+
+      .fieldset {
+        .field-label {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  code {
+    line-height: 1.8;
+    padding: 0;
+    top: 0;
+    padding: 1rem 2rem;
+  }
+
+  p code {
+    background-color: #282a36;
+    color: white;
+    padding: 0.075rem 0.25rem;
+    border-radius: 2px;
+  }
+
+  pre, code, p code, pre code {
+    font-family: $mono !important;
+  }
+}

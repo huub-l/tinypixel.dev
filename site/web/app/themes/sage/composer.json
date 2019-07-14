@@ -35,6 +35,7 @@
   },
   "require": {
     "php": "^7.1.3",
+    "illuminate/cache": "^5.8",
     "roots/acorn": "dev-master",
     "stoutlogic/acf-builder": "^1.8"
   },

@@ -13,26 +13,24 @@ class PluginFields extends Fields
         return [
             'name'  => 'Plugin',
             'style' => 'seamless',
-            'ui'    => 'true',
+            'ui'    => 1,
         ];
     }
 
     public function fields($builder)
     {
         $builder
-            ->addTab('Plugin', [
-                'placement' => 'left'
-                ])
+            ->addTab('Plugin', ['placement' => 'left'])
                 ->addGroup('plugin', ['label' => 'Plugin'])
-                    ->addText('name', [
-                        'label' => 'Plugin name'
-                    ])
-                    ->addUrl('github', [
-                        'label' => 'Github'
-                    ])
-                    ->addTextArea('description', [
-                        'label' => 'Plugin description'
-                    ])
+                    ->addText('name', ['label' => 'Plugin name'])
+                    ->addUrl('downloadUrl', ['label' => 'Download URL'])
+                    ->addTextarea('description', ['label' => 'Plugin description'])
+                    ->addText('license', ['label' => 'License', 'placeholder' => 'MIT'])
+                    ->addRepeater('requirements', ['label' => 'Requirements'])
+                        ->addText('technology', ['label' => 'Technology'])
+                        ->addText('version', ['label' => 'Requirement'])
+                    ->endRepeater()
+                    ->addUrl('sourceCode', ['label' => 'Source'])
                 ->endGroup();
 
         return $builder;

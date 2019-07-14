@@ -10,7 +10,7 @@ mix
     output: { publicPath: mix.config.resourceRoot }
   })
 
-mix.browserSync('example.test')
+mix.browserSync('https://tinypixel.valet')
 
 mix.sass(src`styles/app.scss`, 'styles')
 

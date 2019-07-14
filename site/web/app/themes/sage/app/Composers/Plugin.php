@@ -2,12 +2,10 @@
 
 namespace App\Composers;
 
-use function \get_field_objects;
+use App\Composers\ACF\FieldComposer;
+use Illuminate\Support\Arr;
 
-use App\Navwalkers\Walker;
-use Roots\Acorn\View\Composer;
-
-class Plugin extends Composer
+class Plugin extends FieldComposer
 {
     /**
      * List of views served by this composer.
@@ -15,9 +13,17 @@ class Plugin extends Composer
      * @var array
      */
     protected static $views = [
-        'partials.single-plugin-*',
+        'partials.header-plugin',
+        'partials.content-single-plugin',
         'partials.plugin-meta',
     ];
+
+    /**
+     * Expiration time of cache in seconds
+     *
+     * @var int
+     */
+    public $cacheExpiry = 60;
 
     /**
      * Data to be passed to view before rendering.
@@ -28,24 +34,12 @@ class Plugin extends Composer
      */
     public function with($data, $view)
     {
-        $this->id = \get_the_ID();
+        $this->useGroups();
 
-        $this->groupQuery = [$this->id, 'plugin'];
-
-        return $data = ['plugin' => $this->getGroupFields(
-            ...$this->groupQuery
-        )];
-    }
-
-    public function getGroupFields($postId, $groupName)
-    {
-        if (!function_exists('get_field_objects')) {
-            return;
-        }
-
-        $groups = (object) collect(\get_field_objects($postId));
-        $fields = (object) $groups->get("{$groupName}")['value'];
-
-        return $fields;
+        return $data = [
+            'plugin' => (object) $this->group('plugin'),
+            'fields' => (object) $this->fields(),
+            'pluginName' => (object) $this->fields()->get('plugin')['name']
+        ];
     }
 }

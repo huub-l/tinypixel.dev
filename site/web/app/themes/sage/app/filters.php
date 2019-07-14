@@ -36,3 +36,10 @@ add_filter('excerpt_more', function () {
 add_filter('get_search_form', function () {
     return view('forms.search');
 });
+
+/**
+ * Acorn globals
+ */
+add_filter('acorn/globals', function () {
+    return true;
+});

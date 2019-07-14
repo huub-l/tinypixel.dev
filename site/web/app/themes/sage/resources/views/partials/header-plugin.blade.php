@@ -1,10 +1,8 @@
-@if(get_post_meta(get_the_id(), "post_header_content", true) != '')
-  <div class="single-post-header-content content-1170 center-relative">
-    {!! do_shortcode(get_post_meta(get_the_id(), "post_header_content", true)) !!}
-  </div>
-@endif
-
-<h1 class="entry-title">@php the_title() @endphp</h1>
+<div class="single-post-header-content content-960 center-relative">
+  <div class="label">Tiny Pixel OSS</div>
+  <h1 class="entry-title">@php the_title() @endphp</h1>
+  <span class="plugin-description has-medium-font-size">{!! $plugin->description ?? '' !!}</span>
+</div>
 
 @if(has_post_thumbnail())
   <div class="single-post-featured-image">
