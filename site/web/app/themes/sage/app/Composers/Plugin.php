@@ -23,7 +23,7 @@ class Plugin extends FieldComposer
      *
      * @var int
      */
-    public $cacheExpiry = 60;
+    public $cacheExpiry = 3600;
 
     /**
      * Data to be passed to view before rendering.
@@ -36,10 +36,6 @@ class Plugin extends FieldComposer
     {
         $this->useGroups();
 
-        return $data = [
-            'plugin' => (object) $this->group('plugin'),
-            'fields' => (object) $this->fields(),
-            'pluginName' => (object) $this->fields()->get('plugin')['name']
-        ];
+        return $data = ['plugin' => (object) $this->group('plugin')];
     }
 }

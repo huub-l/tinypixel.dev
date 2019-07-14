@@ -13,12 +13,19 @@
 
     .plugin-description {
       display: inline-block;
-      padding-bottom: 2rem;
+      padding-bottom: 3rem;
     }
   }
 
   .post-info-wrapper {
+    margin-top: 0;
+    padding-top: 0;
     width: 200px;
+    margin-right: 60px;
+
+    @media screen and (max-width: 1020px) {
+      width: 100%;
+    }
   }
 
   .plugin-meta {
@@ -27,8 +34,10 @@
       padding-bottom: 0;
 
       &:first-child {
-        padding-top: 12px;
-        padding-bottom: 6px;
+        display: inline-block;
+        padding: 0;
+        margin-top: 16px;
+        margin-bottom: 8px;
       }
     }
 
@@ -57,6 +66,12 @@
       }
     }
 
+    .plugin-description {
+      @media screen and (max-width: 1020px) {
+        display: none;
+      }
+    }
+
     .plugin-download {
       display: inline-block;
       width: 100%;
@@ -70,6 +85,11 @@
       &:hover {
         background: #f92672;
         transition: background 200ms ease-in-out;
+      }
+
+      @media screen and (max-width: 1020px) {
+        max-width: 300px;
+        margin: 0 auto;
       }
     }
 

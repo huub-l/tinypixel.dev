@@ -23,14 +23,22 @@ class PluginFields extends Fields
             ->addTab('Plugin', ['placement' => 'left'])
                 ->addGroup('plugin', ['label' => 'Plugin'])
                     ->addText('name', ['label' => 'Plugin name'])
-                    ->addUrl('downloadUrl', ['label' => 'Download URL'])
+                    ->addUrl('sourceCode', ['label' => 'Source'])
+
+                    ->addText('downloadVersion', [
+                        'label' => 'Version (for download)',
+                        'wrapper' => ['width' => 50]])
+                    ->addUrl('downloadUrl', [
+                        'label' => 'Download URL',
+                        'wrapper' => ['width' => 50]])
+
                     ->addTextarea('description', ['label' => 'Plugin description'])
                     ->addText('license', ['label' => 'License', 'placeholder' => 'MIT'])
+
                     ->addRepeater('requirements', ['label' => 'Requirements'])
                         ->addText('technology', ['label' => 'Technology'])
                         ->addText('version', ['label' => 'Requirement'])
                     ->endRepeater()
-                    ->addUrl('sourceCode', ['label' => 'Source'])
                 ->endGroup();
 
         return $builder;
