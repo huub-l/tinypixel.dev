@@ -70,7 +70,7 @@ return [
     'providers' => [
         App\Providers\ThemeServiceProvider::class,
         App\Providers\SVGServiceProvider::class,
-        App\Providers\BuilderServiceProvider::class,
+        App\Providers\BuilderServiceProvider::class
     ],
 
     /*

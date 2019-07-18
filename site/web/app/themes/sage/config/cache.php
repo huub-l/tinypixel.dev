@@ -44,7 +44,7 @@ return [
         ],
         'file' => [
             'driver' => 'file',
-            'path' => get_theme_file_path('framework/cache/data'),
+            'path' => get_theme_file_path('storage/framework/cache/data'),
         ],
         'memcached' => [
             'driver' => 'memcached',

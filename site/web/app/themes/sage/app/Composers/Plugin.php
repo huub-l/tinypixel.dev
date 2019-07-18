@@ -2,10 +2,10 @@
 
 namespace App\Composers;
 
-use App\Composers\ACF\FieldComposer;
+use \TinyPixel\FieldsComposer\FieldsComposer;
 use Illuminate\Support\Arr;
 
-class Plugin extends FieldComposer
+class Plugin extends FieldsComposer
 {
     /**
      * List of views served by this composer.
@@ -34,8 +34,6 @@ class Plugin extends FieldComposer
      */
     public function with($data, $view)
     {
-        $this->useGroups();
-
-        return $data = ['plugin' => (object) $this->group('plugin')];
+        return $data = ['plugin' => $this->fields('plugin')];
     }
 }

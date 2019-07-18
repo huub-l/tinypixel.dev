@@ -38,7 +38,8 @@
     "illuminate/cache": "^5.8",
     "nothingworks/blade-svg": "^0.3.1",
     "roots/acorn": "dev-master",
-    "stoutlogic/acf-builder": "^1.8"
+    "stoutlogic/acf-builder": "^1.8",
+    "tinypixel/fields-composer": "dev-master"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4"
@@ -53,6 +54,9 @@
   "scripts": {
     "lint": [
       "phpcs"
+    ],
+    "post-autoload-dump": [
+      "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
     ]
   }
 }

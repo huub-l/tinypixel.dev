@@ -1,0 +1,7 @@
+{
+    "version": 2,
+    "paths": [
+        "src/roots/acorn",
+        "src/tinypixel/fields-composer"
+    ]
+}

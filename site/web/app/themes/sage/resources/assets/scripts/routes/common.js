@@ -11,7 +11,7 @@ export default {
     syntaxHighlight()
 
     const target = {
-      links: document.querySelectorAll('a:not([class="wp-block-button__link"])'),
+      links: document.querySelectorAll('a:not([class="wp-block-button__link"]):not([class="plugin-download"])'),
       buttons: document.querySelectorAll('a.wp-block-button__link'),
     }
 
