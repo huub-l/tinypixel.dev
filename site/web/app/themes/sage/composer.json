@@ -41,9 +41,6 @@
     "stoutlogic/acf-builder": "^1.8",
     "tinypixel/fields-composer": "dev-master"
   },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^3.4"
-  },
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
