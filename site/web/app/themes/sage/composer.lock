@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e05afa370cdc7753f7d54369b0b427cb",
+    "content-hash": "79344b0ae70407a6e67a1d5c979b97b4",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1911,12 +1911,18 @@
             "time": "2019-06-17T17:37:00+00:00"
         },
         {
-            "name": "tinypixel/fields-composer",
+            "name": "tiny-pixel/fields-composer",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pixelcollective/fields-composer.git",
+                "reference": "e005f736c5d98d7d43c474df30129cb9f29a28a3"
+            },
             "dist": {
-                "type": "path",
-                "url": "src/tinypixel/fields-composer",
-                "reference": "8a34f89eaa21f72ba64bb7da365ac6701ea21d64"
+                "type": "zip",
+                "url": "https://api.github.com/repos/pixelcollective/fields-composer/zipball/e005f736c5d98d7d43c474df30129cb9f29a28a3",
+                "reference": "e005f736c5d98d7d43c474df30129cb9f29a28a3",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.3"
@@ -1934,6 +1940,7 @@
                     "TinyPixel\\FieldsComposer\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1949,9 +1956,7 @@
                 "sage",
                 "wordpress"
             ],
-            "support": {
-                "issues": "https://github.com/pixelcollective/fields-composer/issues"
-            }
+            "time": "2019-07-14T21:42:07+00:00"
         }
     ],
     "packages-dev": [],
@@ -1959,7 +1964,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "roots/acorn": 20,
-        "tinypixel/fields-composer": 20
+        "tiny-pixel/fields-composer": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

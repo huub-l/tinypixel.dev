@@ -39,7 +39,7 @@
     "nothingworks/blade-svg": "^0.3.1",
     "roots/acorn": "dev-master",
     "stoutlogic/acf-builder": "^1.8",
-    "tinypixel/fields-composer": "dev-master"
+    "tiny-pixel/fields-composer": "dev-master"
   },
   "config": {
     "optimize-autoloader": true,
