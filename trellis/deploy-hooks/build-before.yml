@@ -31,3 +31,5 @@
 
 - name: Flush acorn cache
   command: wp acorn optimize:clear
+  args:
+    chdir: "{{ project_local_path }}/web/app/themes/sage"
