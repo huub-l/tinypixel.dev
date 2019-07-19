@@ -40,7 +40,4 @@
     chdir: "{{ deploy_helper.new_release_path }}/web/app/themes/sage"
 
 - name: Set permissions on data cache
-  command: find {{ deploy_helper.new_release_path }}/web/app/themes/sage/storage/framework/cache/ -type d ! -perm 0775 -exec chmod 0755 {} \;
-
-- name: Open permissions on view cache
-  command: find {{ deploy_helper.new_release_path }}/web/app/themes/sage/storage/framework/views/ -type d ! -perm 0775 -exec chmod 0755 {} \;
+  command: find {{ deploy_helper.new_release_path }}/web/app/themes/sage/storage/framework/ -type d ! -perm 0775 -exec chmod 0755 {} \;
