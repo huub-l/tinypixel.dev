@@ -33,4 +33,8 @@
   command: wp acorn optimize:clear
   args:
     chdir: "{{ deploy_helper.new_release_path }}/web/app/themes/sage"
-    
+
+- name: Clear acorn views
+  command: wp acorn view:clear
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}/web/app/themes/sage"
