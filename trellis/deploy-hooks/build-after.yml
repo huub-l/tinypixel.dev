@@ -28,3 +28,8 @@
   composer:
     no_scripts: yes
     working_dir: "{{ deploy_helper.new_release_path }}"
+
+- name: Flush acorn cache
+  command: wp acorn optimize:clear
+  args:
+    chdir: "{{ project_local_path }}/web/app/themes/sage"

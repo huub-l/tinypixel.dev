@@ -28,8 +28,3 @@
 
 - name: Open permissions on view cache
   command: find {{ deploy_helper.new_release_path }}/web/app/themes/sage/storage/framework/views/ -type d ! -perm 0755 -exec chmod 0755 {} \;
-
-- name: Flush acorn cache
-  command: wp acorn optimize:clear
-  args:
-    chdir: "{{ project_local_path }}/web/app/themes/sage"
