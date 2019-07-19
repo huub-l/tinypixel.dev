@@ -38,16 +38,24 @@ class Title extends Composer
      */
     public function title($view)
     {
-        if ($view !== 'partials.page-header') {
-            return get_the_title();
-        }
-
         if (is_home()) {
             if ($home = get_option('page_for_posts', true)) {
                 return get_the_title($home);
             }
 
             return __('Latest Posts', 'sage');
+        }
+
+        if (is_archive('audience')) {
+            $audience = get_the_archive_title();
+
+            return "Open-Source Plugins for {$audience}";
+        }
+
+        if (is_archive('language')) {
+            $language = get_the_archive_title();
+
+            return "Open-Source Packages for {$language}";
         }
 
         if (is_archive()) {

@@ -2,7 +2,16 @@
 
 namespace App\Providers;
 
-use App\PostTypes\Plugin;
+use App\PostTypes\{
+    Plugin,
+    Package,
+};
+
+use App\Taxonomies\{
+    Language,
+    Audience,
+};
+
 use Illuminate\Support\Collection;
 use Roots\Acorn\ServiceProvider;
 
@@ -24,6 +33,16 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /**
+         * PostTypes
+         */
         new Plugin();
+        new Package();
+
+        /**
+         * Taxonomies
+         */
+        new Language();
+        new Audience();
     }
 }

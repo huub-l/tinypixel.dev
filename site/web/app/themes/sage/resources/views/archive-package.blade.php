@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('partials.header-archive')
+  @include('partials.header-archive-package')
   @while(have_posts()) @php the_post() @endphp
     <article @php post_class('animate relative content-960 center-relative') @endphp>
         <div class="entry-holder">

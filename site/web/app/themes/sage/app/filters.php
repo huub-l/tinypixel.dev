@@ -38,6 +38,21 @@ add_filter('get_search_form', function () {
 });
 
 /**
+ * Remove archive prefix
+ */
+add_filter('get_the_archive_title', function ($title) {
+    $parts = explode(': ', $title, 2);
+
+    $title = !empty($parts[1]) ? [
+        'a11y'    => esc_html($parts[0]),
+        'display' =>  wp_kses($parts[1], ['span' => ['class' => []]]),
+    ] : $title;
+
+    return "<span class=\"screen-reader-text\">{$title['a11y']}: </span>{$title['display']}";
+});
+
+
+/**
  * Acorn globals
  */
 add_filter('acorn/globals', function () {

@@ -22,3 +22,9 @@
     group: no
     owner: no
     rsync_opts: --chmod=Du=rwx,--chmod=Dg=rx,--chmod=Do=rx,--chmod=Fu=rw,--chmod=Fg=r,--chmod=Fo=r
+
+- name: make dirs 0755   
+  command: find {{ deploy_helper.new_release_path }}/web/app/themes/sage/storage/framework/cache/ -type d ! -perm 0755 -exec chmod 0755 {} \;
+
+- name: make dirs 0755   
+  command: find {{ deploy_helper.new_release_path }}/web/app/themes/sage/storage/framework/views/ -type d ! -perm 0755 -exec chmod 0755 {} \;

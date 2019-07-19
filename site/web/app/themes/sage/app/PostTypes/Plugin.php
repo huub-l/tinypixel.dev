@@ -8,18 +8,21 @@ class Plugin extends PostType
 {
     /**
      * Icon
+     *
      * @var string
      */
-    private $icon = 'dashicons-plugin';
+    private $icon = 'dashicons-admin-plugins';
 
     /**
      * Template filename
+     *
      * @var string
      */
     protected $name = 'Plugin';
 
     /**
      * Supported
+     *
      * @var array
      */
     private $supports = [
@@ -27,6 +30,10 @@ class Plugin extends PostType
         'editor',
         'thumbnail',
         'excerpt',
+    ];
+
+    private $taxonomies = [
+        'audiences',
     ];
 
     /**
@@ -54,7 +61,7 @@ class Plugin extends PostType
                 'not_found'          => __('No Plugins found.', 'tinypixel'),
                 'not_found_in_trash' => __('No Plugins found in Trash.', 'tinypixel')
             ],
-            'description'      => __('NDN Plugin Episodes', 'tinypixel'),
+            'description'      => __('Tiny Pixel developed WordPress plugins', 'tinypixel'),
             'public'           => true,
             'public_queryable' => true,
             'show_ui'          => true,
@@ -66,11 +73,12 @@ class Plugin extends PostType
             'menu_position'    => 20,
             'capability_type'  => 'post',
             'rewrite'          => [
-                'slug'       => 'plugins',
+                'slug'       => 'open-source/plugins',
                 'with_front' => false,
             ],
             'menu_icon'        => $this->icon,
             'supports'         => $this->supports,
+            'taxonomies'       => $this->taxonomies,
         ]);
     }
 }
