@@ -24,4 +24,4 @@
     rsync_opts: --chmod=Du=rwx,--chmod=Dg=rx,--chmod=Do=rx,--chmod=Fu=rw,--chmod=Fg=r,--chmod=Fo=r
 
 - name: Fix theme storage permissions
-  file: path="{{ deploy_helper.new_release_path }}/web/app/themes/sage/storage/framework owner=web group=www:data mode=0775 state=directory recurse=yes
+  file: path="{{ deploy_helper.new_release_path }}/web/app/themes/sage/storage/framework" owner=web group=www:data mode=0775 state=directory recurse=yes
