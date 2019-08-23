@@ -27,7 +27,6 @@ class Plugin extends PostType
      */
     private $supports = [
         'title',
-        'editor',
         'thumbnail',
         'excerpt',
     ];

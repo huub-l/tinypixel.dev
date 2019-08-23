@@ -6,12 +6,29 @@ use \Walker_Nav_Menu as Walker_Nav_Menu;
 
 class Walker extends Walker_Nav_Menu
 {
+    /**
+     * An inscrutable number.
+     * @var int
+     */
     public $number = 1;
 
-    public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+    public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
     {
-        $indent = ($depth) ? str_repeat("\t", $depth) : '';
+        /**
+         * Initial values
+         */
+        $value = '';
+        $classNames = '';
+        $attributes = '';
 
+        /**
+         * Indentation
+         */
+        $indent = $depth ? str_repeat("\t", $depth) : '';
+
+        /**
+         * Classes
+         */
         $class_names = $value = '';
 
         $classes = empty($item->classes) ? array() : (array) $item->classes;
@@ -29,42 +46,37 @@ class Walker extends Walker_Nav_Menu
 
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
-        $id = apply_filters(
-            'nav_menu_item_id',
-            "menu-item-{$item->ID}",
-            $item,
-            $args
+
+        /**
+         * IDs
+         */
+        $id = esc_attr(
+            apply_filters('nav_menu_item_id', "menu-item-{$item->ID}", $item, $args)
         );
 
-        $id = $id ? ' id="' . esc_attr($id) . '"' : '';
+        $id = $id ? 'id="{$id}"' : '';
 
-        $output .= $indent . '<li' . $id . $value . $class_names . '>';
+        $output .= $indent . "<li {$id} {$value} {$classNames}>";
 
-        $atts = array();
-        $atts = [
+        $atts = apply_filters('nav_menu_link_attributes', [
             'title'  => !empty($item->attr_title) ? $item->attr_title : '',
             'target' => !empty($item->target) ? $item->target : '',
             'rel'    => !empty($item->xfn) ? $item->xfn : '',
-            'href'   => !empty($item->url) ? $item->url : ''
-        ];
+            'href'   => !empty($item->url) ? $item->url : '',
+        ], $item, $args);
 
-        $atts = apply_filters(
-            'nav_menu_link_attributes',
-            $atts,
-            $item,
-            $args
-        );
-
-        $attributes = '';
         foreach ($atts as $attr => $value) {
             if (!empty($value)) {
-                $value = ('href' === $attr) ? esc_url($value) : esc_attr($value);
-                $attributes .= ' ' . $attr . '="' . $value . '"';
+                $value = 'href' === $attr ? esc_url($value) : esc_attr($value);
+                $attributes .= " {$attr}=\"{$value}\"";
             }
         }
 
-        $item_output = $args->before;
-        $item_output .= '<a' . $attributes . '>';
+        /**
+         * Item out
+         */
+        $item_output  = $args->before;
+        $item_output .= "<a {$attributes}>";
         $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
         $item_output .= '</a>';
         $item_output .= $args->after;

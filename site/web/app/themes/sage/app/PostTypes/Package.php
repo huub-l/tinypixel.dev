@@ -24,7 +24,6 @@ class Package extends PostType
      */
     private $supports = [
         'title',
-        'editor',
         'thumbnail',
         'excerpt',
     ];
