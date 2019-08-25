@@ -3,9 +3,12 @@
 namespace App\Providers;
 
 use BladeSvg\SvgFactory;
-
+use Illuminate\Support\Collection;
 use Roots\Acorn\ServiceProvider;
 
+/**
+ * SVG Service Provider
+ */
 class SVGServiceProvider extends ServiceProvider
 {
     /**
@@ -20,11 +23,10 @@ class SVGServiceProvider extends ServiceProvider
             $svgPath = $this->app['config']->get('svg.svg_path');
             $svgSpritesheetPath = $this->app['config']->get('svg.svg_path');
 
-            return new SvgFactory(collect($svg)->merge([
+            return new SvgFactory(Collection::make($svg)->merge([
                 'svg_path'         => $this->app->basePath($svgPath),
                 'spritesheet_path' => $this->app->basePath($svgSpritesheetPath),
-            ])->all()
-            );
+            ])->all());
         });
     }
 

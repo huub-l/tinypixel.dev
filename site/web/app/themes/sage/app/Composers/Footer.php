@@ -3,9 +3,14 @@
 namespace App\Composers;
 
 use Roots\Acorn\View\Composer;
+use Roots\Acorn\View\Composers\Concerns\AcfFields;
+use Roots\Acorn\View\Composers\Concerns\Arrayable;
+use Roots\Acorn\View\Composers\Concerns\Cacheable;
 
 class Footer extends Composer
 {
+    use AcfFields, Arrayable;
+
     /**
      * List of views served by this composer.
      *
@@ -15,23 +20,40 @@ class Footer extends Composer
         'partials.footer',
     ];
 
+    protected static $mods;
+    protected static $options;
+
     /**
-     * Data to be passed to view before rendering.
+     * Constructor.
      *
-     * @param  array $data
-     * @param  \Illuminate\View\View $view
+     */
+    public function __construct()
+    {
+        self::$mods    = \get_theme_mods();
+        self::$options = \wp_load_alloptions();
+    }
+
+    /**
+     * Data to be passed to view before rendering
+     *
      * @return array
      */
-    public function with($data, $view)
+    protected function with()
     {
-        $mods = \get_theme_mods();
+        return $this->toArray();
+    }
 
-        return [
-            'footer' => (object) [
-                'image'     => \get_option('footer_image'),
-                'copyright' => $mods['footer_copyright'],
-                'social'    => $mods['footer_social'],
-            ],
+    /**
+     * Footer.
+     *
+     * @return object
+     */
+    public function footer()
+    {
+        return (object) [
+            'image'     => self::$options['footer_image'],
+            'copyright' => self::$mods['footer_copyright'],
+            'social'    => self::$mods['footer_social'],
         ];
     }
 }

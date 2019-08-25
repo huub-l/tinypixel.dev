@@ -16,7 +16,9 @@ class Fields
     public function init()
     {
         $this->builder = $this->app->makeWith('builder', $this->builder());
+
         $this->addFields($this->builder);
+
         $this->setLocation();
 
         add_action('acf/init', [$this, 'build']);

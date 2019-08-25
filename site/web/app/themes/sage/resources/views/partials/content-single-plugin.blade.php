@@ -2,7 +2,7 @@
   @include('partials.plugin-meta')
   <div class="entry-content">
 
-    {!! $readme !!}
+   {!! $readme !!}
 
     @if(has_tag())
       <div class="tags-holder">

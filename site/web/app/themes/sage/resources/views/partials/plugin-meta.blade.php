@@ -7,10 +7,10 @@
           {!! __('WordPress Plugin', 'sage') !!}
         </span>
 
-        @if($plugin->name)
+        @if($plugin->plugin_name)
           <div class="plugin-name">
             <span>
-              {!! $plugin->name !!}
+              {!! $plugin->plugin_name !!}
             </span>
           </div>
         @endif
@@ -24,7 +24,7 @@
         @endif
 
         <div>
-          <span><a class="plugin-download" href="{!! $git['html_url'] !!}" title="Download {!! $plugin->name !!}">
+          <span><a class="plugin-download" href="{!! $git['html_url'] !!}" title="Download {!! $plugin->plugin_name !!}">
             <i class="white">@svg('fa/solid/download')</i>
             {{ __('Download Plugin', 'sage') }}
           </a></span>
