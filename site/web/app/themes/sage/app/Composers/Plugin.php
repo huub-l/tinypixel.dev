@@ -13,6 +13,8 @@ use Roots\Acorn\View\Composers\Concerns\Arrayable;
 use Roots\Acorn\Application;
 use App\Model\Post;
 use Illuminate\Support\Facades\Cache;
+use GrahamCampbell\Github\GitHubManager;
+use GrahamCampbell\Github\GitHubFactory;
 
 /**
  * plugin singular view composer
