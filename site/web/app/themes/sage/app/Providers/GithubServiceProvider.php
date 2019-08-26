@@ -38,8 +38,6 @@ class GitHubServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setupConfig();
-
-        dd($this);
     }
 
     /**

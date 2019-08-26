@@ -62,8 +62,6 @@ class Plugin extends Composer
          */
         $this->git = $app->make('github.factory');
 
-        dd($this);
-
         /**
          * Markdown
          * @var object
