@@ -10,6 +10,12 @@ use Spatie\SSLCertificate\SSLCertificate;
 use App\Model\Post;
 use App\Mail\CertificateAlert;
 
+/**
+ * SSL Certificate validity checks for client sites.
+ *
+ * @author  Kelly Mears <developers@tinypixel.dev>
+ * @license MIT
+ */
 class SSL
 {
     /**
@@ -87,9 +93,17 @@ class SSL
      */
     public function init() : void
     {
-        $this->collectSites();
+        /**
+         * Cron event
+         */
+        add_action('cron-check-sites', [$this, 'checkSites']);
 
-        add_action('init', [$this, 'checkSites']);
+        /**
+         * Add cron event to schedule
+         */
+        if (! wp_next_scheduled('cron-check-sites')) {
+            wp_schedule_event(self::$now, 3600, 'cron-check-sites');
+        }
     }
 
     /**
@@ -99,7 +113,7 @@ class SSL
      */
     public function dueToBeSent(string $lastSent) : bool
     {
-        return Carbon::parse($lastSent)->floatDiffInHours(self::$now) > 24;
+        return Carbon::parse($lastSent)->floatDiffInHours(self::$now) > 23;
     }
 
     /**
@@ -116,14 +130,27 @@ class SSL
         $sites = self::$post::type('site')->status('publish')->with('meta')->get();
 
         /**
-         * And make a collection out of the results.
+         * Then, make a collection out of the results and iterate
+         * through it.
          */
         Collection::make($sites)->each(function ($site) {
             /**
-             * Save `last_checked` if it isn't set (new site)
+             * A new site will not have the last_checked meta.
              */
             if ($site->meta->last_checked == null) {
+                /**
+                 * So, create this meta
+                 */
                 $site->saveMeta('last_checked', self::$now);
+
+                /**
+                 * And register the site to be checked.
+                 */
+                $this->checkDomains->push([
+                    'production' => $site->meta->hostnames_production,
+                    'staging'    => $site->meta->hostnames_staging,
+                ]);
+
             }
 
             /**
@@ -143,6 +170,19 @@ class SSL
                 $site->saveMeta('last_checked', self::$now);
             }
         });
+
+        /**
+         * If one or more of the sites has been added to the
+         * results collection then return the collection.
+         */
+        if (! $this->checkDomains->isEmpty()) {
+            return $this->checkDomains;
+        }
+
+        /**
+         * Else, return nothing.
+         */
+        return null;
     }
 
     /**
@@ -153,73 +193,94 @@ class SSL
     public function checkSites()
     {
         /**
-         * If there are domains to message about
+         * Gather sites.
+         *
+         * If messages have been sent recently or there are no sites
+         * to message about then return early.
          */
-        if (! $this->checkDomains->isEmpty()) {
+        if (! $checkDomains = $this->collectSites()) {
+            return;
+        }
+
+        /**
+         * Otherwise, collect the domains
+         */
+        Collection::make($this->checkDomains)->each(function ($domains) {
             /**
-             * Collect the domains
+             * And for each one
              */
-            Collection::make($this->checkDomains)->each(function ($domains) {
-                foreach ($domains as $env => $domain) {
+            foreach ($domains as $env => $domain) {
+                /**
+                 * Check the status of its certificate.
+                 */
+                $certCheck = self::$ssl::createForHostName($domain);
+
+                /**
+                 * And set an array
+                 */
+                $certInfo  = new Object(
+                    $domain      = $domain,
+                    $environment = $env,
+                    $valid       = $certCheck->isValid(),
+                    $issuer      = $certCheck->getIssuer(),
+                    $expiration  = $certCheck->expirationDate()->toDayDateTimeString(),
+                    $daysLeft    = $certCheck->expirationDate()->diffInDays(),
+                );
+
+                /**
+                 * If the certificate is invalid
+                 */
+                if (! $certInfo->valid) {
+                    /**
+                     * Then flag it as such.
+                     */
+                    $this->flagInvalid = true;
 
                     /**
-                     * Gather information on the domain.
+                     * And alert interested parties via email.
                      */
-                    $certCheck = self::$ssl::createForHostName($domain);
+                    $this->sendMailToAll(
+                        self::$alertAudience,
+                        'invalidCert',
+                        (array) $certInfo
+                    );
 
-                    $certInfo  = [
-                        'domain'      => $domain,
-                        'environment' => $env,
-                        'valid'       => $certCheck->isValid(),
-                        'issuer'      => $certCheck->getIssuer(),
-                        'expiration'  => $certCheck->expirationDate()->toDayDateTimeString(),
-                        'daysLeft'    => $certCheck->expirationDate()->diffInDays(),
-                    ];
+                /**
+                 * If the domain is set to expire soon
+                 */
+                } elseif ($certInfo->daysLeft < 7
+                    && $certInfo->environment == 'production') {
+                    /**
+                     * Then flag it as such.
+                     */
+                    $this->flagInvalid = true;
 
                     /**
-                     * If domain certificate is invalid
+                     * And alert interested parties via email.
                      */
-                    if (! $certInfo['valid']) {
-                        /**
-                         * Then set the `flagInvalid` flag to true.
-                         */
-                        $this->flagInvalid = true;
-
-                        /**
-                         * And send the mail.
-                         */
-                        $this->sendMailToAll(self::$alertAudience, 'invalidCert', $certInfo);
-                    }
-
-                    /**
-                     * If the domain is set to expire soon
-                     */
-                    elseif ($certInfo['daysLeft'] < 7 && $certInfo['environment'] == 'production') {
-                        /**
-                         * Then set the `flagInvalid` flag to true.
-                         */
-                        $this->flagInvalid = true;
-
-                        /**
-                         * And send the mail.
-                         */
-                        $this->sendMailToAll(self::$alertAudience, 'upcomingCert', $certInfo);
-                    }
+                    $this->sendMailToAll(
+                        self::$alertAudience,
+                        'upcomingCert',
+                        (array) $certInfo
+                    );
                 }
-            });
-
-            /**
-             * Finally, if no domain was flagged as expired or soon to expire
-             * then send a success summary.
-             */
-            if (! $this->flagInvalidCert) {
-                $this->sendMailToAll(self::$alertAudience, 'nominalCerts');
             }
+        });
+
+        /**
+         * Finally, if no domain was flagged as expired or soon to expire
+         * then send a success summary.
+         */
+        if (! $this->flagInvalidCert) {
+            $this->sendMailToAll(
+                self::$alertAudience,
+                'nominalCerts'
+            );
         }
     }
 
     /**
-     * Mail audience.
+     * Send mail to a specific WP_User role.
      *
      * @param  string $role
      * @param  string $alertType
@@ -231,23 +292,24 @@ class SSL
     {
         $audience = \get_users(['role' => $alertAudience]);
 
-        Collection::make($audience)->each(function ($user) use ($certInfo, $alertType) {
-            $this->sendMail($user->user_email, $alertType, $certInfo);
-        });
+        Collection::make($audience)->each(
+            function ($user) use ($certInfo, $alertType) {
+                $this->sendMail($user->user_email, $alertType, $certInfo);
+            }
+        );
     }
 
     /**
-     * Send mail.
+     * Send an email message.
      *
      * @param  string $role
      * @param  string $alertType
      * @param  array  $certInfo
+     *
      * @return void
      */
     public function sendMail(string $recipient, string $alertType, array $certInfo)
     {
-        Mail::to($recipient)->send(
-            new CertificateAlert($recipient, $alertType, $certInfo)
-        );
+        Mail::to($recipient)->send(new CertificateAlert($recipient, $alertType, $certInfo));
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "498b263816cc8696118c32e05fe5306b",
+    "content-hash": "7f4e70b15e4a56d8297996b7871c9e6d",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -140,6 +140,46 @@
                 "zikula"
             ],
             "time": "2019-08-12T15:00:31+00:00"
+        },
+        {
+            "name": "devgeniem/wp-cron-runner",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devgeniem/wp-cron-runner.git",
+                "reference": "52c04ba7cd50a0deae6f58ee86fe8b31cdf7e504"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devgeniem/wp-cron-runner/zipball/52c04ba7cd50a0deae6f58ee86fe8b31cdf7e504",
+                "reference": "52c04ba7cd50a0deae6f58ee86fe8b31cdf7e504",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": ">=1.0.12",
+                "php": ">=5.4"
+            },
+            "type": "wordpress-muplugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Ville Siltala",
+                    "role": "Developer",
+                    "email": "ville.siltala@geniem.com",
+                    "homepage": "http://geniem.com/"
+                }
+            ],
+            "description": "This mu-plugin lets you run WP cron for a site / network site via a single endpoint.",
+            "keywords": [
+                "cron",
+                "mu-plugin",
+                "wordpress",
+                "wp-cron"
+            ],
+            "time": "2018-12-03T11:08:59+00:00"
         },
         {
             "name": "ffraenz/private-composer-installer",
@@ -915,6 +955,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/updraftplus/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-crontrol",
+            "version": "1.7.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-crontrol/",
+                "reference": "tags/1.7.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-crontrol.1.7.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-crontrol/"
         }
     ],
     "packages-dev": [
