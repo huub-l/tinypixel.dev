@@ -51,7 +51,14 @@
     "tiny-pixel/acorn-commonmark": "dev-master",
     "tiny-pixel/acorn-db": "dev-master",
     "tiny-pixel/acorn-mail": "dev-illuminate-queue-and-bus",
-    "tiny-pixel/github-service-provider": "^0.0.1"
+    "tiny-pixel/github-service-provider": "^0.0.1",
+    "graham-campbell/github": "^8.1",
+    "guzzlehttp/guzzle": "^6.3",
+    "lcobucci/jwt": "^3.3",
+    "php-http/guzzle6-adapter": "^1.1",
+    "league/commonmark": "^1.0",
+    "league/commonmark-ext-autolink": "^1.0",
+    "league/commonmark-extras": "^1.1"
   },
   "config": {
     "optimize-autoloader": true,
