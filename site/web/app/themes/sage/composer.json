@@ -54,6 +54,7 @@
     "tiny-pixel/github-service-provider": "^0.0.1",
     "guzzlehttp/guzzle": "^6.3",
     "lcobucci/jwt": "^3.3",
+    "graham-campbell/github": "^8.1",
     "php-http/guzzle6-adapter": "^1.1",
     "league/commonmark": "^1.0",
     "league/commonmark-ext-autolink": "^1.0",
