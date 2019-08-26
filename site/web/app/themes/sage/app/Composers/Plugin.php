@@ -57,31 +57,40 @@ class Plugin extends Composer
      *
      * @param \League\CommonMark\CommonMarkConverter $md
      */
-    public function __construct(Application $app, CommonMarkConverter $md) {
+    public function __construct(\GrahamCampbell\GitHub\GitHubManager $git, CommonMarkConverter $md)
+    {
         /**
          * Github API Service
-         * @var \GrahamCampbell\GitHub\GithubManager
+         *
+         * @var \GrahamCampbell\GitHub\GitHubManager
          */
-        $this->git = $app->make('github.factory');
+        $this->git = $git;
 
         /**
          * Markdown
-         * @var object
+         *
+         * @var \League\CommonMark\CommonMarkConverter
          */
         $this->md = $md;
 
         /**
          * Post model
+         *
+         * @var \App\Model\Post
          */
         self::$post  = Post::class;
 
         /**
          * Plugin Id
+         *
+         * @var int
          */
         $this->pluginId = get_the_id();
 
         /**
          * Plugin post.
+         *
+         * @var Eloquent collection
          */
         $this->pluginInstance = self::$post
                 ::type('plugin')
@@ -92,6 +101,8 @@ class Plugin extends Composer
 
         /**
          * Plugin meta.
+         *
+         * @var Eloquent collection
          */
         $this->meta = $this->pluginInstance->meta;
     }
@@ -110,6 +121,8 @@ class Plugin extends Composer
 
     /**
      * View method: $plugin
+     *
+     * @return Eloquent
      */
     public function plugin()
     {
@@ -118,6 +131,8 @@ class Plugin extends Composer
 
     /**
      * Github ID
+     *
+     * @return string
      */
     protected function repoId()
     {
