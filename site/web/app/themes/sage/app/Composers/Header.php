@@ -4,9 +4,14 @@ namespace App\Composers;
 
 use App\Navwalkers\Walker;
 use Roots\Acorn\View\Composer;
+use Roots\Acorn\View\Composers\Concerns\AcfFields;
+use Roots\Acorn\View\Composers\Concerns\Arrayable;
+use Roots\Acorn\View\Composers\Concerns\Cacheable;
 
 class Header extends Composer
 {
+    use AcfFields, Arrayable;
+
     /**
      * List of views served by this composer.
      *
@@ -18,23 +23,33 @@ class Header extends Composer
     ];
 
     /**
-     * Data to be passed to view before rendering.
+     * Data to be passed to view before rendering
      *
-     * @param  array $data
-     * @param  \Illuminate\View\View $view
      * @return array
      */
-    public function with($data, $view)
+    protected function with()
     {
-        $mods = get_theme_mods();
+        return $this->toArray();
+    }
 
-        return $data = [
-            'header'     => (object) ['logo' => get_option('header_logo')],
-            'navigation' => $this->primaryNavigation(),
+    /**
+     * Header
+     *
+     * @return object
+     */
+    public function header()
+    {
+        return (object) [
+            'logo' => get_option('header_logo'),
         ];
     }
 
-    public function primaryNavigation()
+    /**
+     * Navigation
+     *
+     * @return
+     */
+    public function navigation()
     {
         if (has_nav_menu('primary_navigation')) {
             return wp_nav_menu([

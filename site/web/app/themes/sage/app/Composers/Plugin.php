@@ -2,38 +2,179 @@
 
 namespace App\Composers;
 
-use \TinyPixel\FieldsComposer\FieldsComposer;
-use Illuminate\Support\Arr;
+use \WP_Post;
+use function \get_post;
+use function \get_the_id;
+use League\CommonMark\CommonMarkConverter;
+use Illuminate\Support\Collection;
+use Roots\Acorn\View\Composer;
+use Roots\Acorn\View\Composers\Concerns\Cacheable;
+use Roots\Acorn\View\Composers\Concerns\Arrayable;
+use Roots\Acorn\Application;
+use App\Model\Post;
+use Illuminate\Support\Facades\Cache;
+use GrahamCampbell\Github\GitHubManager;
+use GrahamCampbell\Github\GitHubFactory;
 
-class Plugin extends FieldsComposer
+/**
+ * plugin singular view composer
+ */
+class Plugin extends Composer
 {
+    use Cacheable, Arrayable;
+
+    /**
+     * Github account
+     * @var string
+     */
+    public $githubAccountName = 'pixelcollective';
+
     /**
      * List of views served by this composer.
-     *
      * @var array
      */
     protected static $views = [
+        'single-plugin',
         'partials.header-plugin',
-        'partials.content-single-plugin',
         'partials.plugin-meta',
+        'partials.content-single-plugin',
     ];
 
     /**
-     * Expiration time of cache in seconds
-     *
-     * @var int
+     * Eloquent Plugin
+     * @var static Post
      */
-    public $cacheExpiry = 3600;
+    public static $plugin;
 
     /**
-     * Data to be passed to view before rendering.
+     * Eloquent Post Model
+     * @var App\Model\Post
+     */
+    public static $post;
+
+    /**
+     * Constructor.
      *
-     * @param  array $data
-     * @param  \Illuminate\View\View $view
+     * @param \League\CommonMark\CommonMarkConverter $md
+     */
+    public function __construct(\GrahamCampbell\GitHub\GitHubManager $git, CommonMarkConverter $md)
+    {
+        /**
+         * Github API Service
+         *
+         * @var \GrahamCampbell\GitHub\GitHubManager
+         */
+        $this->git = $git;
+
+        /**
+         * Markdown
+         *
+         * @var \League\CommonMark\CommonMarkConverter
+         */
+        $this->md = $md;
+
+        /**
+         * Post model
+         *
+         * @var \App\Model\Post
+         */
+        self::$post  = Post::class;
+
+        /**
+         * Plugin Id
+         *
+         * @var int
+         */
+        $this->pluginId = get_the_id();
+
+        /**
+         * Plugin post.
+         *
+         * @var Eloquent collection
+         */
+        $this->pluginInstance = self::$post
+                ::type('plugin')
+                ->status('publish')
+                ->where('id', $this->pluginId)
+                ->with('meta')
+                ->first();
+
+        /**
+         * Plugin meta.
+         *
+         * @var Eloquent collection
+         */
+        $this->meta = $this->pluginInstance->meta;
+    }
+
+    /**
+     * Data to be passed to view before rendering
+     *
      * @return array
      */
-    public function with($data, $view)
+    protected function with()
     {
-        return $data = ['plugin' => $this->fields('plugin')];
+        return Cache::rememberForever($this->repoId(), function () {
+            return $this->toArray();
+        });
+    }
+
+    /**
+     * View method: $plugin
+     *
+     * @return Eloquent
+     */
+    public function plugin()
+    {
+        return $this->meta;
+    }
+
+    /**
+     * Github ID
+     *
+     * @return string
+     */
+    protected function repoId()
+    {
+        return $this->meta->plugin_githubId;
+    }
+
+    /**
+     * View method: $git
+     *
+     * @return array
+     */
+    public function git() : array
+    {
+        return $this->git->repo()->show(
+            $this->githubAccountName,
+            $this->repoId()
+        );
+    }
+
+    /**
+     * View method: $readme
+     *
+     * @return string
+     */
+    public function readme()
+    {
+        return $this->md->convertToHtml(
+            $this->repoReadme()
+        );
+    }
+
+    /**
+     * Repository readme.
+     *
+     * @param  string $name
+     * @return string
+     */
+    protected function repoReadme()
+    {
+        return $this->git->repo()->readme(
+            $this->githubAccountName,
+            $this->repoId()
+        );
     }
 }

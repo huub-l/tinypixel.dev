@@ -3,9 +3,14 @@
 namespace App\Composers;
 
 use Roots\Acorn\View\Composer;
+use Roots\Acorn\View\Composers\Concerns\AcfFields;
+use Roots\Acorn\View\Composers\Concerns\Arrayable;
+use Roots\Acorn\View\Composers\Concerns\Cacheable;
 
 class Title extends Composer
 {
+    use AcfFields, Arrayable;
+
     /**
      * List of views served by this composer.
      *
@@ -19,24 +24,21 @@ class Title extends Composer
     ];
 
     /**
-     * Data to be passed to view before rendering.
+     * Data to be passed to view before rendering
      *
-     * @param  array $data
-     * @param  \Illuminate\View\View $view
      * @return array
      */
-    public function with($data, $view)
+    protected function with()
     {
-        return ['title' => $this->title($view->getName())];
+        return $this->toArray();
     }
 
     /**
      * Returns the post title.
      *
-     * @param  \Illuminate\View\View $view
      * @return string
      */
-    public function title($view)
+    public function title()
     {
         if (is_home()) {
             if ($home = get_option('page_for_posts', true)) {

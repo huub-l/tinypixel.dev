@@ -8,6 +8,8 @@ use Roots\Acorn\Application;
 
 class PluginFields extends Fields
 {
+    public static $half = ['ui' => 1, 'width' => 50];
+
     public function builder()
     {
         return [
@@ -19,27 +21,17 @@ class PluginFields extends Fields
 
     public function fields($builder)
     {
-        $builder
-            ->addTab('Plugin', ['placement' => 'left'])
-                ->addGroup('plugin', ['label' => 'Plugin'])
-                    ->addText('name', ['label' => 'Plugin name'])
-                    ->addUrl('sourceCode', ['label' => 'Source'])
+        $builder->addTab('Info', ['placement' => 'left'])
 
-                    ->addText('downloadVersion', [
-                        'label' => 'Version (for download)',
-                        'wrapper' => ['width' => 50]])
-                    ->addUrl('downloadUrl', [
-                        'label' => 'Download URL',
-                        'wrapper' => ['width' => 50]])
-
-                    ->addTextarea('description', ['label' => 'Plugin description'])
-                    ->addText('license', ['label' => 'License', 'placeholder' => 'MIT'])
-
-                    ->addRepeater('requirements', ['label' => 'Requirements'])
-                        ->addText('technology', ['label' => 'Technology'])
-                        ->addText('version', ['label' => 'Requirement'])
-                    ->endRepeater()
-                ->endGroup();
+            ->addGroup('plugin', ['label' => 'Plugin'])
+                ->addText('name', ['label' => 'Plugin name', 'wrapper' => self::$half])
+                ->addText('githubId', ['label' => 'Github ID', 'wrapper' => self::$half])
+                ->addTextarea('description', ['label' => 'Plugin description'])
+                ->addRepeater('requirements', ['label' => 'Requirements'])
+                    ->addText('technology', ['label' => 'Technology'])
+                    ->addText('version', ['label' => 'Requirement'])
+                ->endRepeater()
+            ->endGroup();
 
         return $builder;
     }

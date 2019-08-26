@@ -2,19 +2,18 @@
 
 namespace App\Providers;
 
-use App\PostTypes\{
-    Plugin,
-    Package,
-};
-
-use App\Taxonomies\{
-    Language,
-    Audience,
-};
-
+use App\PostTypes\Plugin;
+use App\PostTypes\Package;
+use App\PostTypes\Site;
+use App\Taxonomies\Language;
+use App\Taxonomies\Audience;
+use App\Services\SSL;
 use Illuminate\Support\Collection;
 use Roots\Acorn\ServiceProvider;
 
+/**
+ * Theme service provider.
+ */
 class ThemeServiceProvider extends ServiceProvider
 {
     /**
@@ -33,15 +32,28 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /**
-         * PostTypes
-         */
+        $this->registerPostTypes();
+
+        $this->registerTaxonomies();
+    }
+
+    /**
+     * Register WordPress PostTypes
+     *
+     * @return void
+     */
+    protected function registerPostTypes()
+    {
         new Plugin();
         new Package();
+        new Site();
+    }
 
-        /**
-         * Taxonomies
-         */
+    /**
+     * Register WordPress Taxonomies
+     */
+    protected function registerTaxonomies()
+    {
         new Language();
         new Audience();
     }
