@@ -55,7 +55,10 @@ class Plugin extends Composer
      * @param \GrahamCampbell\GitHub\GithubManager   $git
      * @param \League\CommonMark\CommonMarkConverter $md
      */
-    public function __construct($git, $md) {
+    public function __construct(
+        \GrahamCampbell\GitHub\GithubManager $git,
+        \League\CommonMark\CommonMarkConverter $md)
+    {
         /**
          * Github API Service
          * @var \GrahamCampbell\GitHub\GithubManager
