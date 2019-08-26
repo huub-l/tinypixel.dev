@@ -52,7 +52,6 @@
     "tiny-pixel/acorn-db": "dev-master",
     "tiny-pixel/acorn-mail": "dev-illuminate-queue-and-bus",
     "tiny-pixel/github-service-provider": "^0.0.1",
-    "graham-campbell/github": "^8.1",
     "guzzlehttp/guzzle": "^6.3",
     "lcobucci/jwt": "^3.3",
     "php-http/guzzle6-adapter": "^1.1",
