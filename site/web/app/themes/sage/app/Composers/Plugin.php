@@ -60,7 +60,9 @@ class Plugin extends Composer
          * Github API Service
          * @var \GrahamCampbell\GitHub\GithubManager
          */
-        $this->git = $app->make('github');
+        $this->git = $app->make('github.factory');
+
+        dd($this);
 
         /**
          * Markdown
