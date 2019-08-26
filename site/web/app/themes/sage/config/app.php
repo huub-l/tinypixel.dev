@@ -72,7 +72,7 @@ return [
         App\Providers\SVGServiceProvider::class,
         App\Providers\BuilderServiceProvider::class,
         App\Providers\SSLServiceProvider::class,
-        App\Providers\GithubServiceProvider::class,
+        GrahamCampbell\GitHub\GithubServiceProvider::class,
     ],
 
     /*
