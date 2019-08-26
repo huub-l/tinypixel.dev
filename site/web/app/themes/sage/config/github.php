@@ -1,4 +1,5 @@
 <?php
+
 use Roots\env;
 
 return [
@@ -13,6 +14,7 @@ return [
     |
     */
     'default' => 'main',
+
     /*
     |--------------------------------------------------------------------------
     | GitHub Connections
@@ -28,52 +30,6 @@ return [
         'main' => [
             'token'      => env('GITHUB_API_TOKEN'),
             'method'     => 'token',
-            // 'backoff'    => false,
-            // 'cache'      => false,
-            // 'version'    => 'v3',
-            // 'enterprise' => false,
-        ],
-        'app' => [
-            'clientId'     => 'your-client-id',
-            'clientSecret' => 'your-client-secret',
-            'method'       => 'application',
-            // 'backoff'      => false,
-            // 'cache'        => false,
-            // 'version'      => 'v3',
-            // 'enterprise'   => false,
-        ],
-        'jwt' => [
-            'token'        => 'your-jwt-token',
-            'method'       => 'jwt',
-            // 'backoff'      => false,
-            // 'cache'        => false,
-            // 'version'      => 'v3',
-            // 'enterprise'   => false,
-        ],
-        'other' => [
-            'username'   => 'your-username',
-            'password'   => 'your-password',
-            'method'     => 'password',
-            // 'backoff'    => false,
-            // 'cache'      => false,
-            // 'version'    => 'v3',
-            // 'enterprise' => false,
-        ],
-        'none' => [
-            'method'     => 'none',
-            // 'backoff'    => false,
-            // 'cache'      => false,
-            // 'version'    => 'v3',
-            // 'enterprise' => false,
-        ],
-        'private' => [
-            'appId'      => 'your-github-app-id',
-            'keyPath'    => 'your-private-key-path',
-            'method'     => 'private',
-            // 'backoff'    => false,
-            // 'cache'      => false,
-            // 'version'    => 'v3',
-            // 'enterprise' => false,
         ],
     ],
 ];
