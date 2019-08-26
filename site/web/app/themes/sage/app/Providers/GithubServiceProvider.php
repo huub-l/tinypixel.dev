@@ -47,13 +47,7 @@ class GitHubServiceProvider extends ServiceProvider
      */
     protected function setupConfig()
     {
-        $source = realpath($raw = __DIR__ . '/../config/github.php') ?: $raw;
-
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                $source => $this->app->configPath('github.php')
-            ]);
-        }
+        $source = realpath($raw = __DIR__ . './../../config/github.php') ?: $raw;
 
         $this->mergeConfigFrom($source, 'github');
     }
@@ -100,10 +94,10 @@ class GitHubServiceProvider extends ServiceProvider
             $config = $app['config'];
             $factory = $app['github.factory'];
 
-            return new \GrahamCampbell\GitHub\GithubFactory($config, $factory);
+            return new \GrahamCampbell\GitHub\GithubManager($config, $factory);
         });
 
-        $this->app->alias('github', \GrahamCampbell\GitHub\GithubFactory::class);
+        $this->app->alias('github', \GrahamCampbell\GitHub\GithubManager::class);
     }
 
     /**
