@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5a1549f201941a4c07629628dbebdde",
+    "content-hash": "00d76c4e96c2ebd2b2f49e8ee8af62a0",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -5281,7 +5281,7 @@
         },
         {
             "name": "tiny-pixel/github-service-provider",
-            "version": "dev-master",
+            "version": "v0.0.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:pixelcollective/acorn-github-service-provider",
@@ -5380,7 +5380,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "roots/acorn": 20,
-        "tiny-pixel/github-service-provider": 20,
         "tiny-pixel/acorn-commonmark": 20,
         "tiny-pixel/acorn-db": 20,
         "tiny-pixel/acorn-mail": 20
