@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Roots\Acorn\View\Composer;
 use Roots\Acorn\View\Composers\Concerns\Cacheable;
 use Roots\Acorn\View\Composers\Concerns\Arrayable;
+use Roots\Acorn\Application;
 use App\Model\Post;
 use Illuminate\Support\Facades\Cache;
 
@@ -52,18 +53,14 @@ class Plugin extends Composer
     /**
      * Constructor.
      *
-     * @param \GrahamCampbell\GitHub\GithubManager   $git
      * @param \League\CommonMark\CommonMarkConverter $md
      */
-    public function __construct(
-        \GrahamCampbell\GitHub\GithubManager $git,
-        \League\CommonMark\CommonMarkConverter $md)
-    {
+    public function __construct(Application $app, CommonMarkConverter $md) {
         /**
          * Github API Service
          * @var \GrahamCampbell\GitHub\GithubManager
          */
-        $this->git = $git;
+        $this->git = $app['github'];
 
         /**
          * Markdown
@@ -145,7 +142,9 @@ class Plugin extends Composer
      */
     public function readme()
     {
-        return $this->md->convertToHtml($this->repoReadme());
+        return $this->md->convertToHtml(
+            $this->repoReadme()
+        );
     }
 
     /**
@@ -156,6 +155,9 @@ class Plugin extends Composer
      */
     protected function repoReadme()
     {
-        return $this->git->repo()->readme($this->githubAccountName, $this->repoId());
+        return $this->git->repo()->readme(
+            $this->githubAccountName,
+            $this->repoId()
+        );
     }
 }
