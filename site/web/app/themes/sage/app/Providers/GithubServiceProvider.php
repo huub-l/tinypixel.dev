@@ -6,6 +6,9 @@ use Github\Client;
 use GrahamCampbell\GitHub\GitHubFactory;
 use GrahamCampbell\GitHub\GitHubManager;
 use GrahamCampbell\GitHub\Authenticators\AuthenticatorFactory;
+use GrahamCampbell\GitHub\Http\ClientBuilder;
+use GrahamCampbell\GitHub\Http\Psr16Cache;
+use GrahamCampbell\Manager\AbstractManager;
 use Illuminate\Contracts\Container\Container;
 use Roots\Acorn\Application;
 use Roots\Acorn\ServiceProvider;
@@ -94,10 +97,10 @@ class GitHubServiceProvider extends ServiceProvider
             $config = $app['config'];
             $factory = $app['github.factory'];
 
-            return new \GrahamCampbell\GitHub\GithubManager($config, $factory);
+            return new GitHubManager($config, $factory);
         });
 
-        $this->app->alias('github', \GrahamCampbell\GitHub\GithubManager::class);
+        $this->app->alias('github', GitHubManager::class);
     }
 
     /**
