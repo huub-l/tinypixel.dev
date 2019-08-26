@@ -5,7 +5,6 @@ namespace App\Composers;
 use \WP_Post;
 use function \get_post;
 use function \get_the_id;
-use GrahamCampbell\GitHub\GithubManager;
 use League\CommonMark\CommonMarkConverter;
 use Illuminate\Support\Collection;
 use Roots\Acorn\View\Composer;
@@ -56,10 +55,7 @@ class Plugin extends Composer
      * @param \GrahamCampbell\GitHub\GithubManager   $git
      * @param \League\CommonMark\CommonMarkConverter $md
      */
-    public function __construct(
-        \GrahamCampbell\GitHub\GithubManager $git,
-        \League\CommonMark\CommonMarkConverter $md
-    ) {
+    public function __construct($git, $md) {
         /**
          * Github API Service
          * @var \GrahamCampbell\GitHub\GithubManager
