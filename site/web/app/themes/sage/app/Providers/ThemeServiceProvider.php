@@ -35,8 +35,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerPostTypes();
 
         $this->registerTaxonomies();
-
-        $this->performClientHealthChecks();
     }
 
     /**
@@ -58,19 +56,5 @@ class ThemeServiceProvider extends ServiceProvider
     {
         new Language();
         new Audience();
-    }
-
-    /**
-     * Do client Health Checks
-     *
-     * @return void
-     */
-    protected function performClientHealthChecks()
-    {
-        (new SSL(
-            $this->app->make('ssl'),
-            $this->app->make('cache'),
-            $this->app->make('mailer.wordpress')
-        ))->init();
     }
 }

@@ -1,8 +1,0 @@
-{
-    "version": 2,
-    "paths": [
-        "src/roots/acorn",
-        "src/tiny-pixel/acorn-mail",
-        "src/tiny-pixel/ssl"
-    ]
-}

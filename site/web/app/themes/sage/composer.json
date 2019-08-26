@@ -45,22 +45,13 @@
   },
   "require": {
     "php": "^7.1.3",
-    "illuminate/cache": "^5.8",
-    "league/commonmark": "^1.0",
-    "league/commonmark-ext-autolink": "^1.0",
-    "nothingworks/blade-svg": "^0.3.1",
     "roots/acorn": "dev-view-composer-traits",
+    "tiny-pixel/github-service-provider": "dev-master",
+    "nothingworks/blade-svg": "^0.3.1",
     "stoutlogic/acf-builder": "^1.8",
     "tiny-pixel/acorn-commonmark": "dev-master",
     "tiny-pixel/acorn-db": "dev-master",
-    "tiny-pixel/acorn-mail": "^0.9.1",
-    "tiny-pixel/fields-composer": "dev-master",
-    "tiny-pixel/ssl": "dev-master",
-    "tiny-pixel/acorn-settings-widgets": "dev-master",
-    "tiny-pixel/acorn-settings-admin-menus": "dev-master",
-    "tiny-pixel/acorn-settings-acorn-settings-gutenberg": "dev-master",
-    "tiny-pixel/acorn-settings-roles": "dev-master",
-    "tiny-pixel/github-service-provider": "dev-master"
+    "tiny-pixel/acorn-mail": "dev-illuminate-queue-and-bus"
   },
   "config": {
     "optimize-autoloader": true,
